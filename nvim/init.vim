@@ -199,7 +199,7 @@ let g:header_field_author = 'sandwich'
 let g:header_field_author_email = '122079260@qq.com'
 let g:header_field_timestamp_format = '%Y-%m-%d %H:%M:%S'
 let g:header_auto_add_header = 0
-autocmd BufRead,BufNewFile *.py,*.go,*.cpp,*.c,*h :AddHeader
+autocmd BufRead,BufNewFile *.py,*.go,*.cpp,*.c,*h,*.java :AddHeader
 " =====
 " ----------tagbar----------
 " =====
@@ -368,6 +368,7 @@ source ~/.config/nvim/vim_plugin_snippets/go.vim
 source ~/.config/nvim/vim_plugin_snippets/cpp.vim
 source ~/.config/nvim/vim_plugin_snippets/c.vim
 source ~/.config/nvim/vim_plugin_snippets/json.vim
+source ~/.config/nvim/vim_plugin_snippets/java.vim
 
 nnoremap S :w<CR>
 nnoremap R :source $MYVIMRC<CR>

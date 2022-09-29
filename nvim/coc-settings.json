@@ -4,7 +4,7 @@
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.source.around.firstMatch": false,
 	"coc.source.buffer.firstMatch": false,
-	"suggest.detailMaxLength": 60,
+	"suggest.labelMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.triggerAfterInsertEnter": true,
 	"suggest.autoTrigger": "always",
@@ -13,7 +13,7 @@
 	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
 	"suggest.snippetIndicator": "",
-	"suggest.triggerCompletionWait": 100,
+	"suggest.triggerCompletionWait": 50,
 	"suggest.echodocSupport": true,
 	"suggest.completionItemKindLabels": {
 		"class": "\uf0e8",
@@ -75,6 +75,7 @@
 	],
 	"yank.enableCompletion": false,
 	"python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+	"pyright.inlayHints.variableTypes": false,
 	"pyright.disableDiagnostics": true,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
