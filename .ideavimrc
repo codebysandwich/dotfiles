@@ -1,0 +1,57 @@
+" ============================ "
+
+" ============================ "
+nnoremap , <nop>
+let mapleader = ","
+
+" 应用插件支持
+set easymotion
+set surround
+set highlightedyank
+set multiple-cursors
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+xmap n <Plug>NextOccurrence
+xmap q <Plug>SkipOccurrence
+xmap Q <Plug>RemoveOccurrence
+
+" 设置相对行号
+set relativenumber
+set clipboard=unnamed
+
+" unable vim's fold
+" set nofoldenable
+set hlsearch
+set incsearch
+set smartcase
+set ignorecase
+nnoremap <leader>l :noh<CR>
+nnoremap zc zc0
+
+set scrolloff=5
+
+" 快速移动
+nnoremap K 5k
+nnoremap J 5j
+vnoremap K 5k
+vnoremap J 5j
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+inoremap ,, <Esc>
+
+" 切换标签页
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+
+" action
+nnoremap <leader>r :action RunClass<CR>
+nnoremap <leader>R :action RunMenu<CR>
+
+" format code
+nnoremap <leader>f :action ReformatCode<CR>
+
+nnoremap S :w<CR>
+nnoremap Q :q<CR>
+nnoremap R :source ~/.ideavimrc<CR>
