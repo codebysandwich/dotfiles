@@ -17,6 +17,7 @@ xmap q <Plug>SkipOccurrence
 xmap Q <Plug>RemoveOccurrence
 
 " 设置相对行号
+set number
 set relativenumber
 set clipboard=unnamed
 
