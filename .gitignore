@@ -1,9 +1,2 @@
 .DS_Store
 
-nvim/pack/tpope/start/fugitive
-nvim/plugged/bufferline.nvim
-nvim/plugged/dashboard-nvim
-nvim/plugged/lazygit.vim
-nvim/plugged/smartim
-nvim/plugged/vim-header
-nvim/plugged/vim-snippets
