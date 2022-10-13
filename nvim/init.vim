@@ -27,7 +27,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'ajmwagar/vim-deus'
 " Plug 'ayu-theme/ayu-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'ryanoasis/vim-devicons'
 " Plug 'mg979/vim-xtabline'
@@ -196,10 +196,12 @@ nnoremap <leader>b :Buffers<CR>
 " ----------vim header----------
 " =====
 let g:header_field_author = 'sandwich'
-let g:header_field_author_email = '122079260@qq.com'
+let g:header_field_author_email = ''
 let g:header_field_timestamp_format = '%Y-%m-%d %H:%M:%S'
 let g:header_auto_add_header = 0
-autocmd BufRead,BufNewFile *.py,*.go,*.cpp,*.c,*h,*.java :AddHeader
+let g:header_auto_update_header = 1
+autocmd BufNewFile *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
+
 " =====
 " ----------tagbar----------
 " =====

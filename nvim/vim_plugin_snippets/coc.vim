@@ -2,58 +2,45 @@
 " --------- coc --------------
 " =====
 " 自动安装的管理部分
-let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-explorer', 'coc-snippets', 
-							\'coc-go', 'coc-marketplace', 'coc-yank', 'coc-pyright']
+let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-pairs', 'coc-explorer', 
+							\'coc-snippets', 'coc-go', 'coc-marketplace', 'coc-yank', 
+							\'coc-pyright']
 set hidden
 set nobackup
 set nowritebackup
 set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-" inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? "\<C-n>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ coc#refresh()
-" inoremap <silent><expr> <M-/> coc#refresh()
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" function! s:check_back_space() abort
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+set signcolumn=yes
 
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+	  \ coc#pum#visible() ? coc#pum#next(1) :
+	  \ CheckBackspace() ? "\<Tab>" :
+	  \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+							  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" inoremap <silent><expr> <cr> pumvisible() ? "\<C-y>"
-"                               \: "\<C-g>u\<CR>"
+nnoremap <silent> <LEADER>h :call ShowDocumentation()<CR>
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-nnoremap <silent> <LEADER>h :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+	call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+	call feedkeys('K', 'in')
   endif
 endfunction
 
 " 设置函数签名触发
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-autocmd CursorHoldI,CursorMovedI * silent! call CocActionAsync('showSignatureHelp')
+autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -70,6 +57,8 @@ inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 " Symbol renaming.
 nmap rn <Plug>(coc-rename)
+
+nmap <leader>f :call CocActionAsync('format')<CR>
 " =====
 " ----------coc-go----------
 " =====
@@ -79,7 +68,7 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " =====
 " let g:coc_snippet_next = '<c-l>'
 " let g:coc_snippet_prev = '<c-k>'
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+" autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " coc-explorer
 nmap tt :CocCommand explorer<CR>
 " =====
@@ -87,8 +76,14 @@ nmap tt :CocCommand explorer<CR>
 " =====
 nnoremap <silent> <LEADER>y  :<C-u>CocList -A --normal yank<cr>
 " =====
-" ----------coc-pydocstring----------
+" ----------coc-action----------
 " =====
 nmap <silent> ga <Plug>(coc-codeaction-line)
 xmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> gA <Plug>(coc-codeaction)
+
+" =====
+" ----------fix coc-java jdt.ls new buffer can not jdt start----------
+" =====
+autocmd BufNewFile *.java silent write
+autocmd BufNewFile *.java silent CocRestart
