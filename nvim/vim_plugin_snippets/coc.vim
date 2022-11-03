@@ -13,6 +13,7 @@ set updatetime=100
 set shortmess+=c
 
 set signcolumn=yes
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 inoremap <silent><expr> <TAB>
 	  \ coc#pum#visible() ? coc#pum#next(1) :
@@ -40,7 +41,7 @@ endfunction
 
 " 设置函数签名触发
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
+" autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -66,11 +67,11 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " =====
 " coc-snippets
 " =====
-" let g:coc_snippet_next = '<c-l>'
-" let g:coc_snippet_prev = '<c-k>'
+" let g:coc_snippet_next = '<TAB>'
+" let g:coc_snippet_prev = '<S-TAB>'
 " autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " coc-explorer
-nmap tt :CocCommand explorer<CR>
+nmap <leader><leader>t :CocCommand explorer<CR>
 " =====
 " ----------coc-yank----------
 " =====
@@ -84,6 +85,7 @@ nmap <silent> gA <Plug>(coc-codeaction)
 
 " =====
 " ----------fix coc-java jdt.ls new buffer can not jdt start----------
+" ----must start with project------
 " =====
 autocmd BufNewFile *.java silent write
 autocmd BufNewFile *.java silent CocRestart

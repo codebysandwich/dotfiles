@@ -1,3 +1,7 @@
+" autocmd FileType java set foldmethod=syntax
+" autocmd FileType java syn region foldBraces start=/{/ end=/}/ transparent fold keepend
+" autocmd FileType java syn region foldJavadoc start=,/\*, end=,\*/, transparent fold keepend
+
 autocmd FileType java set splitbelow
 " autocmd FileType java nnoremap <leader>r :w<ESC>:!javac %<Enter><ESC>:sp \| resize 12 \| terminal time java %:r<Enter>G
 " autocmd FileType java inoremap <leader>r <ESC>:w<ESC>:!javac %<Enter><ESC>:sp \| resize 12 \| terminal time java %:r<Enter>
@@ -10,3 +14,4 @@ autocmd FileType java nnoremap <leader>r :w<ESC>:!javac -sourcepath src -d out %
 autocmd FileType java inoremap <leader>r <ESC>:w<ESC>:!javac -sourcepath src -d out %<Enter><ESC>
 			\:sp \| resize 12 \| terminal w=%:.:r;c=${w\#*/};time java -cp out $c<Enter>G
 
+" autocmd FileType java setlocal conceallevel=1

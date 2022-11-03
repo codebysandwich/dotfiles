@@ -6,82 +6,83 @@
 " =====
 " -----------vim-plug-----------
 " =====
+" ===========speed up vim-plug=============
+" let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'mhinz/vim-startify'
-Plug 'glepnir/dashboard-nvim'
-Plug 'bling/vim-airline'
+Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
+" Plug 'nvim-lualine/lualine.nvim'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'jmcantrell/vim-virtualenv', {'for': ['python', 'python3']}
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " wakatime
 Plug 'wakatime/vim-wakatime'
 Plug 'preservim/nerdcommenter'
-Plug 'Yggdroot/indentLine'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" Plug 'Yggdroot/indentLine'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
+Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" colorscheme deus
 Plug 'ajmwagar/vim-deus'
 " Plug 'ayu-theme/ayu-vim'
-" Plug 'jiangmiao/auto-pairs'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'ryanoasis/vim-devicons'
+" highlighting syntax
+" We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" highlighting for Python in Neovim
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" Plug 'ryanoasis/vim-devicons'
 " Plug 'mg979/vim-xtabline'
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-" Plug 'ryanoasis/vim-devicons' Icons without colours
 Plug 'akinsho/bufferline.nvim'
-" Plug 'wfxr/minimap.vim'
 Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi'
-Plug 'alpertuna/vim-header'
-" Plug 'preservim/tagbar'
+Plug 'alpertuna/vim-header', {'on': 'AddHeader'}
 Plug 'kshenoy/vim-signature'
-" Plug 'francoiscabrol/ranger.vim'
-Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/vim-floaterm', {'on': 'FloatermToggle'}
 Plug 'kevinhwang91/rnvimr'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v0.4.3' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'kdheepak/lazygit.vim', {'on': 'LazyGit'}
 Plug 'easymotion/vim-easymotion'
 " 前端插件
-Plug 'mattn/emmet-vim'
-" Plug 'voldikss/vim-translator'
+Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'ybian/smartim'
 Plug 'folke/zen-mode.nvim'
+Plug 'tweekmonster/startuptime.vim'
 " Initialize plugin system
 call plug#end()
+let mapleader=','
 " =====
-"----------鼠标-----------------
+"----------光标-----------------
 " =====
-if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-else
-	let &t_SI = "\e[5 q"
-	let &t_EI = "\e[2 q"
-endif
+" if exists('$TMUX')
+"     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+"     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+" else
+"     let &t_SI = "\e[5 q"
+"     let &t_EI = "\e[2 q"
+" endif
 " =====
 " -------------配色-----------------
 " =====
-syntax enable
-syntax on
-let mapleader=','
+" syntax enable
+" syntax on
 if (has('termguicolors'))
   set termguicolors
 endif
-" let g:gruvbox_contrast_dark = 'medium'
-set background=dark
+
 " colorscheme gruvbox
-set t_Co=256
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let g:gruvbox_contrast_dark = 'medium'
+" set background=dark
+" set t_Co=256
 " =====
 " ----------deus----------
 " =====
@@ -94,7 +95,7 @@ let g:deus_termcolors=256
 " colorscheme ayu
 
 " 高亮LineNr的颜色
-" highlight LineNr guifg=#CDD9CA
+" highlight LineNr guifg=#CDD9A
 hi CursorLineNr guifg=#FECB6B
 
 " =====
@@ -116,68 +117,35 @@ let g:airline_symbols.colnr = ' '
 
 " 是否打开tabline
 " let g:airline#extensions#tabline#enabled = 1 "打开后，tabline和tmuxline都可以得到增强
-let g:airline#extensions#virtualenv#enabled = 1
+" let g:airline#extensions#virtualenv#enabled = 1
+" let g:airline#extensions#poetv#enabled = 1
+
+let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc']
+" let g:airline#extensions#searchcount#enabled = 0
+" let g:airline#extensions#tagbar#enabled = 0
+" let g:airline#extensions#tabline#enabled = 0
+" =====
+" ----------lualine----------
+" =====
+" source ~/.config/nvim/vim_plugin_snippets/lualine.lua
 " =====
 " ----------bufferline----------
 " =====
-lua << EOF
-require("bufferline").setup{
-	options = {
-		show_buffer_close_icons = false,
-		show_close_icon = false,
-	},
-	highlights = {
-		fill = {
-			guibg = '#21252C',
-		},
-		indicator_selected = {
-			guifg = '#98C379',
-		}
-	}
-}
-EOF
+source ~/.config/nvim/vim_plugin_snippets/bufferline.lua
 " =====
 " ----------zen-mode----------
 " =====
-lua << EOF
-  require("zen-mode").setup {
-	  window = {
-		backdrop = 1,
-		width = 1, 
-		height = 1,
-	  },
-	  plugins = {
-		options = {
-		  showcmd = false,
-		},
-	  -- tmux = { enabled = true },
-	  }
-  }
-EOF
+source ~/.config/nvim/vim_plugin_snippets/zen-mode.lua
 nnoremap <Leader>z :ZenMode<CR>
 " =====
 " ----------dashboard----------
 " =====
-let g:dashboard_default_executive='fzf'
+let g:dashboard_default_executive='telescope'
 source ~/.config/nvim/vim_plugin_snippets/dashboard.vim
-" =====
-" ----------clap----------
-" =====
-" let g:clap_search_box_border_style='curve'
-" let g:clap_popup_border='nil'
-" let g:clap_insert_mode_only=v:true
-" " let g:clap_open_preview='never'
-" let g:clap_preview_direction='UD'
-" let g:clap_theme = 'material_design_dark'
-
-" =====
-" ----------indentLine!!----------
-" =====
-let g:indentLine_setConceal=0
 " =====
 " ----------markdown preview----------
 " =====
-let g:mkdp_browser='chromium'
+" let g:mkdp_browser='chromium'
 let g:mkdp_auto_start = 0
 " =====
 " ----------nerdcommenter----------
@@ -188,10 +156,13 @@ let g:NERDDefaultAlign = 'left'
 " =====
 " ----------fzf----------
 " =====
-" let g:fzf_layout = { 'down': '~40%'}
-" let g:fzf_preview_window = ['right:50%']
-nnoremap <leader>a :Ag<CR>
-nnoremap <leader>b :Buffers<CR>
+" nnoremap <leader>a :Ag<CR>
+" nnoremap <leader>b :Buffers<CR>
+" noremap <leader>tf :FZF<CR>
+" =====
+" ----------telescope----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/telescope.vim
 " =====
 " ----------vim header----------
 " =====
@@ -203,14 +174,13 @@ let g:header_auto_update_header = 1
 autocmd BufNewFile *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
 
 " =====
-" ----------tagbar----------
-" =====
-" nmap <leader>T :TagbarToggle<CR>
-
-" =====
 " ----------vista----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/vista.vim
+" =====
+" ----------nvim-treesitter----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/nvim-treesitter.lua
 " =====
 " ----------semshi----------
 " =====
@@ -260,8 +230,8 @@ let g:floaterm_keymap_toggle = "<leader>j"
 " =====
 nmap <leader><leader>S <Plug>(easymotion-s2)
 " vim-easymotion disturbs diagnostics
-" autocmd User EasyMotionPromptBegin silent! CocDisable
-" autocmd User EasyMotionPromptEnd silent! CocEnable
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable
 " =====
 " ----------smartim----------
 " =====
@@ -286,7 +256,6 @@ set wildmenu
 " 设置折叠
 set foldmethod=indent
 set foldlevelstart=99
-" set foldmethod=manual
 
 set hlsearch
 exec "nohlsearch"
@@ -304,8 +273,6 @@ vnoremap ,, <esc>
 
 inoremap <c-e> <Esc>A
 inoremap <c-a> <Esc>I
-" nnoremap <c-e> $
-" nnoremap <c-a> ^
 
 " =====
 " ----------禁用方向键----------
@@ -324,7 +291,7 @@ vnoremap <up> <nop>
 vnoremap <down> <nop>
 
 
-noremap <LEADER>l :nohlsearch<CR>
+noremap <silent> <LEADER>l :nohlsearch<CR>
 
 noremap K 5k
 noremap J 5j
@@ -379,9 +346,14 @@ nnoremap Q :q<CR>
 " speed vim
 " set shada="None"
 nnoremap <Leader>C :!rm ~/.local/share/nvim/shada/main.shada<CR>
+set lazyredraw
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/usr/local/bin/python3'
+let g:ruby_host_skip_check=1
+let g:ruby_host_prog = exepath('/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host')
+let g:node_host_skip_check=1
+let g:node_host_prog = '/usr/local/bin/neovim-node-host'
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1

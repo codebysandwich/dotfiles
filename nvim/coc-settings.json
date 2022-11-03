@@ -50,7 +50,10 @@
 	"signature.target": "float",
 	"coc.preferences.formatOnSaveFiletypes": [
 		"python",
+		"go",
+		"java",
 		"json",
+		"c",
 		"cpp",
 		"markdown"
 	],
@@ -59,16 +62,24 @@
 	"explorer.file.column.indent.indentLine": true,
 	"explorer.previewAction.onHover": "labeling",
 	"explorer.width": 35,
-	"python.linting.pylintEnabled": false,
+	"yank.enableCompletion": false,
+	"python.linting.pylintEnabled": true,
+	"python.linting.pylintArgs": [
+		"--disable=all",
+		"--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon",
+		"--enable=global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string",
+		"--enable=anomalous-backslash-in-string,bad-open-mode,unused-import",
+		"--extension-pkg-whitelist=PyQt5"
+	],
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
 		"--style",
 		"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
 	],
-	"yank.enableCompletion": false,
 	"python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
 	"pyright.disableDiagnostics": true,
-	"pyright.inlayHints.enable": false,
+	"pyright.inlayHints.variableTypes": false,
+	"pyright.inlayHints.functionReturnTypes": false,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 	"snippets.priority": 100,
