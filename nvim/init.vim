@@ -10,10 +10,12 @@
 " let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'mhinz/vim-startify'
-Plug 'glepnir/dashboard-nvim'
-" Plug 'nvim-lualine/lualine.nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
+Plug 'nvim-lualine/lualine.nvim'
+" gitsigns
+" Plug 'lewis6991/gitsigns.nvim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -43,6 +45,7 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'alpertuna/vim-header', {'on': 'AddHeader'}
@@ -101,33 +104,37 @@ hi CursorLineNr guifg=#FECB6B
 " =====
 " ----------airline----------
 " =====
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.dirty=''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.colnr = ' '
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.dirty=''
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.colnr = ' '
 
 " 是否打开tabline
 " let g:airline#extensions#tabline#enabled = 1 "打开后，tabline和tmuxline都可以得到增强
 " let g:airline#extensions#virtualenv#enabled = 1
 " let g:airline#extensions#poetv#enabled = 1
 
-let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc']
+" let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc']
 " let g:airline#extensions#searchcount#enabled = 0
 " let g:airline#extensions#tagbar#enabled = 0
 " let g:airline#extensions#tabline#enabled = 0
 " =====
 " ----------lualine----------
 " =====
-" source ~/.config/nvim/vim_plugin_snippets/lualine.lua
+source ~/.config/nvim/vim_plugin_snippets/lualine.lua
+" =====
+" ----------gitsigns----------
+" =====
+" source ~/.config/nvim/vim_plugin_snippets/gitsigns.lua
 " =====
 " ----------bufferline----------
 " =====
