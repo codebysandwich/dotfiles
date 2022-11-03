@@ -10,7 +10,7 @@
 " let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'mhinz/vim-startify'
-Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
+Plug 'glepnir/dashboard-nvim'
 " Plug 'nvim-lualine/lualine.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
