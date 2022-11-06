@@ -12,8 +12,9 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'mhinz/vim-startify'
 Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim'
 " gitsigns
-" Plug 'lewis6991/gitsigns.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'SirVer/ultisnips'
@@ -41,7 +42,6 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'mg979/vim-xtabline'
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'akinsho/bufferline.nvim'
 Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
@@ -50,7 +50,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'alpertuna/vim-header', {'on': 'AddHeader'}
 Plug 'kshenoy/vim-signature'
-Plug 'voldikss/vim-floaterm', {'on': 'FloatermToggle'}
+Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'kdheepak/lazygit.vim', {'on': 'LazyGit'}
@@ -97,9 +97,12 @@ let g:deus_termcolors=256
 " let ayucolor="mirage"
 " colorscheme ayu
 
-" 高亮LineNr的颜色
+" 高亮LineNr的颜色 
 " highlight LineNr guifg=#CDD9A
 hi CursorLineNr guifg=#FECB6B
+" fix NonText to Comment
+hi NonText ctermfg=245 guifg=#928374 gui=none
+" hi CocInlayHint ctermfg=245 guifg=#928374 gui=none
 
 " =====
 " ----------airline----------
@@ -123,7 +126,8 @@ hi CursorLineNr guifg=#FECB6B
 " let g:airline#extensions#virtualenv#enabled = 1
 " let g:airline#extensions#poetv#enabled = 1
 
-" let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc']
+" let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc', 'whitespace']
+" let b:airline_whitespace_checks = ['conflicts']
 " let g:airline#extensions#searchcount#enabled = 0
 " let g:airline#extensions#tagbar#enabled = 0
 " let g:airline#extensions#tabline#enabled = 0
@@ -134,7 +138,7 @@ source ~/.config/nvim/vim_plugin_snippets/lualine.lua
 " =====
 " ----------gitsigns----------
 " =====
-" source ~/.config/nvim/vim_plugin_snippets/gitsigns.lua
+source ~/.config/nvim/vim_plugin_snippets/gitsigns.lua
 " =====
 " ----------bufferline----------
 " =====
@@ -223,7 +227,6 @@ nnoremap <silent> <leader>g :LazyGit<CR>
 " ----------coc----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/coc.vim
-
 " =====
 " ----------emmet----------
 " =====
@@ -273,7 +276,15 @@ set smartcase
 " set cursor blinking in NeoVim
 set guicursor+=a:-blinkwait175-blinkoff150-blinkon175
 
-" set mouse=a
+" set no mouse and termial esc to normal mode
+set mouse=
+tnoremap <leader><Esc> <C-\><C-n>
+set splitright
+nnoremap <leader>L <c-w>l
+nnoremap <leader>H <c-w>h
+nnoremap <leader>J <c-w>j
+nnoremap <leader>K <c-w>k
+
 set scrolloff=5
 inoremap ,, <esc>:w<CR>
 vnoremap ,, <esc> 
@@ -298,7 +309,7 @@ vnoremap <up> <nop>
 vnoremap <down> <nop>
 
 
-noremap <silent> <LEADER>l :nohlsearch<CR>
+noremap <silent> <leader>l :nohlsearch<CR>
 
 noremap K 5k
 noremap J 5j
@@ -350,10 +361,10 @@ nnoremap S :w<CR>
 nnoremap R :source $MYVIMRC<CR>
 nnoremap Q :q<CR>
 
-" speed vim
-" set shada="None"
-nnoremap <Leader>C :!rm ~/.local/share/nvim/shada/main.shada<CR>
-set lazyredraw
+" speed neovim
+nnoremap <Leader>C :!rm ~/.local/state/nvim/shada/main.shada<CR>
+" set ttyfast
+" set lazyredraw
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_skip_check=1

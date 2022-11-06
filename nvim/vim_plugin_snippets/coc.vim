@@ -69,7 +69,7 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " =====
 " let g:coc_snippet_next = '<TAB>'
 " let g:coc_snippet_prev = '<S-TAB>'
-" autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " coc-explorer
 nmap <leader><leader>t :CocCommand explorer<CR>
 " =====
@@ -82,7 +82,6 @@ nnoremap <silent> <LEADER>y  :<C-u>CocList -A --normal yank<cr>
 nmap <silent> ga <Plug>(coc-codeaction-line)
 xmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> gA <Plug>(coc-codeaction)
-
 " =====
 " ----------fix coc-java jdt.ls new buffer can not jdt start----------
 " ----must start with project------

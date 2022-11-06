@@ -1,5 +1,6 @@
 {
 	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.snippetStatusText": "ⓢ ",
 	"suggest.labelMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.autoTrigger": "always",
@@ -55,7 +56,8 @@
 		"json",
 		"c",
 		"cpp",
-		"markdown"
+		"markdown",
+		"js"
 	],
 	"explorer.icon.enableNerdfont": true,
 	"explorer.file.showHiddenFiles": true,
@@ -78,8 +80,9 @@
 	],
 	"python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
 	"pyright.disableDiagnostics": true,
+	"python.analysis.autoImportCompletions": false,
 	"pyright.inlayHints.variableTypes": false,
-	"pyright.inlayHints.functionReturnTypes": false,
+	"pyright.inlayHints.functionReturnTypes": true,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 	"snippets.priority": 100,
