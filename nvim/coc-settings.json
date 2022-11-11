@@ -82,7 +82,7 @@
 	"pyright.disableDiagnostics": true,
 	"python.analysis.autoImportCompletions": false,
 	"pyright.inlayHints.variableTypes": false,
-	"pyright.inlayHints.functionReturnTypes": true,
+	"pyright.inlayHints.functionReturnTypes": false,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 	"snippets.priority": 100,
