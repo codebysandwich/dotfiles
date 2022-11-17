@@ -7,6 +7,17 @@ local colors = {
 -- Change the background of lualine_c section for normal mode
 custom_dark.normal.c.bg = colors.bg
 
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed
+    }
+  end
+end
+
 local treesitter = require('nvim-treesitter')
 -- use treesitter parse
 local function treelocation()
@@ -22,13 +33,6 @@ require('lualine').setup {
     icons_enabled = true,
 	--theme = 'onedark',
 	theme = custom_dark,
-    --theme = {
-    --  -- We are going to use lualine_c an lualine_x as left and
-    --  -- right section. Both are highlighted by c theme .  So we
-    --  -- are just setting default looks o statusline
-    --  normal = { c = { bg = '#202328' } },
-    --  inactive = { c = { bg = '#202328' } },
-    --},
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
@@ -46,8 +50,9 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {{'diff', symbols = { added = ' ', modified = '柳', removed = ' ' },}, 
-				 {'branch', icon = {'', align='left'}}, 
+    lualine_b = {{'diff', source=diff_source, symbols = { added = ' ', modified = '柳', removed = ' ' },}, 
+				 -- {'branch', icon = {'', align='left'}}, 
+				 {'b:gitsigns_head', icon = ''},
 				 {'diagnostics', source = {'coc'},
 				  symbols = { error = ' ', warn = ' ', info = ' ' },
 				 }
@@ -56,7 +61,7 @@ require('lualine').setup {
 	lualine_c = {{function()
 			     local fg = '#98C37A' -- not modified
 			     if vim.bo.modified then fg = '#FA4933' -- unsaved
-			     elseif not vim.bo.modifiable then fg = '#EF616E' end -- readonly
+			     elseif not vim.bo.modifiable then fg = '#56B6C3' end -- readonly
 			     vim.cmd('hi! lualine_filename_status guibg='..colors.bg..' guifg='..fg)
 				 --equal path=1
 				 return vim.fn.expand('%:~:.')..'%m'

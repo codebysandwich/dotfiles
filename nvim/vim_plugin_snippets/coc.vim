@@ -29,15 +29,19 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-nnoremap <silent> <LEADER>h :call ShowDocumentation()<CR>
+nnoremap <silent> <leader>h :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
 	call CocActionAsync('doHover')
   else
-	call feedkeys('K', 'in')
+	call feedkeys('<leader>h', 'in')
   endif
 endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight CocHighlightText ctermfg=223 ctermbg=239 guifg=#ebdbb2 guibg=#336161
 
 " 设置函数签名触发
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
@@ -69,7 +73,7 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " =====
 " let g:coc_snippet_next = '<TAB>'
 " let g:coc_snippet_prev = '<S-TAB>'
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+" autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " coc-explorer
 nmap <leader><leader>t :CocCommand explorer<CR>
 " =====

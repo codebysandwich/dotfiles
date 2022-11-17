@@ -21,6 +21,7 @@ let g:dashboard_custom_header = [
 " let g:dashboard_preview_file_height=12
 "
 
+let g:dashboard_default_executive='telescope'
 
 let g:dashboard_custom_shortcut={
   \ 'last_session' : 'SPC s l',
@@ -31,6 +32,7 @@ let g:dashboard_custom_shortcut={
   \ 'find_word' : 'SPC f a',
   \ 'book_marks' : 'SPC f m',
   \ }
+
 nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
 nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
 nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>

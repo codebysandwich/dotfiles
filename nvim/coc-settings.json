@@ -78,7 +78,7 @@
 		"--style",
 		"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
 	],
-	"python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+	"python.pythonPath": "/usr/local/bin/python3",
 	"pyright.disableDiagnostics": true,
 	"python.analysis.autoImportCompletions": false,
 	"pyright.inlayHints.variableTypes": false,

@@ -9,7 +9,6 @@
 " ===========speed up vim-plug=============
 " let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'mhinz/vim-startify'
 Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
@@ -23,7 +22,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " wakatime
 Plug 'wakatime/vim-wakatime'
 Plug 'preservim/nerdcommenter'
-" Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
@@ -33,14 +32,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " colorscheme deus
 Plug 'ajmwagar/vim-deus'
+" Plug 'theniceboy/nvim-deus'
+" Plug 'morhetz/gruvbox'
 " Plug 'ayu-theme/ayu-vim'
 " highlighting syntax
 " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " highlighting for Python in Neovim
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'mg979/vim-xtabline'
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
@@ -50,10 +49,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'alpertuna/vim-header', {'on': 'AddHeader'}
 Plug 'kshenoy/vim-signature'
-Plug 'voldikss/vim-floaterm'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'kevinhwang91/rnvimr'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
-Plug 'kdheepak/lazygit.vim', {'on': 'LazyGit'}
 Plug 'easymotion/vim-easymotion'
 " 前端插件
 Plug 'mattn/emmet-vim', {'for': 'html'}
@@ -64,33 +62,29 @@ Plug 'tweekmonster/startuptime.vim'
 call plug#end()
 let mapleader=','
 " =====
-"----------光标-----------------
-" =====
-" if exists('$TMUX')
-"     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-"     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-" else
-"     let &t_SI = "\e[5 q"
-"     let &t_EI = "\e[2 q"
-" endif
-" =====
 " -------------配色-----------------
 " =====
-" syntax enable
-" syntax on
-if (has('termguicolors'))
-  set termguicolors
-endif
-
-" colorscheme gruvbox
-" let g:gruvbox_contrast_dark = 'medium'
-" set background=dark
+set termguicolors
 " set t_Co=256
+set background=dark
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" =====
+" ----------gruvbox----------
+" =====
+" let g:gruvbox_contrast_dark = 'medium'
+" colorscheme gruvbox
 " =====
 " ----------deus----------
 " =====
 colorscheme deus
-let g:deus_termcolors=256
+" let g:deus_termcolors=256
+" adjust signcolun and gitstatus
+hi GitGutterAdd guifg=#98c379 guibg=#242a32
+hi GitGutterChange guifg=#fabd2f guibg=#242a32
+hi GitGutterChangeDelete guifg=#fe8019 guibg=#242a32
+hi GitGutterDelete guifg=#fb4934 guibg=#242a32
+" fix NonText to Comment force
+hi NonText ctermfg=245 guifg=#928374 gui=none
 " =====
 " ----------ayu----------
 " =====
@@ -100,8 +94,6 @@ let g:deus_termcolors=256
 " 高亮LineNr的颜色 
 " highlight LineNr guifg=#CDD9A
 hi CursorLineNr guifg=#FECB6B
-" fix NonText to Comment
-hi NonText ctermfg=245 guifg=#928374 gui=none
 " hi CocInlayHint ctermfg=245 guifg=#928374 gui=none
 
 " =====
@@ -144,6 +136,10 @@ source ~/.config/nvim/vim_plugin_snippets/gitsigns.lua
 " =====
 source ~/.config/nvim/vim_plugin_snippets/bufferline.lua
 " =====
+" ----------indent----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/blankline.lua
+" =====
 " ----------zen-mode----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/zen-mode.lua
@@ -151,17 +147,16 @@ nnoremap <Leader>z :ZenMode<CR>
 " =====
 " ----------dashboard----------
 " =====
-let g:dashboard_default_executive='telescope'
 source ~/.config/nvim/vim_plugin_snippets/dashboard.vim
 " =====
 " ----------markdown preview----------
 " =====
-" let g:mkdp_browser='chromium'
+let g:mkdp_browser='chromium'
 let g:mkdp_auto_start = 0
 " =====
 " ----------nerdcommenter----------
 " =====
-let g:NERDCustomDelimiters = {"vim": {"left": "\" "}}
+let g:NERDCustomDelimiters = {"vim": {"left": "\" "}, "lua": {"left": "-- "}}
 let g:NERDToggleCheckAllLines = 1
 let g:NERDDefaultAlign = 'left'
 " =====
@@ -173,7 +168,7 @@ let g:NERDDefaultAlign = 'left'
 " =====
 " ----------telescope----------
 " =====
-source ~/.config/nvim/vim_plugin_snippets/telescope.vim
+source ~/.config/nvim/vim_plugin_snippets/telescope.lua
 " =====
 " ----------vim header----------
 " =====
@@ -195,6 +190,7 @@ source ~/.config/nvim/vim_plugin_snippets/nvim-treesitter.lua
 " =====
 " ----------semshi----------
 " =====
+let g:semshi#mark_selected_nodes = 0
 " autocmd InsertEnter *.py Semshi pause
 " autocmd InsertLeave *.py Semshi enable
 " =====
@@ -219,11 +215,6 @@ source ~/.config/nvim/vim_plugin_snippets/vim_go.vim
 " =====
 source ~/.config/nvim/vim_plugin_snippets/rnvimr.vim
 " =====
-" ----------lazygit----------
-" =====
-" setup mapping to call :LazyGit
-nnoremap <silent> <leader>g :LazyGit<CR>
-" =====
 " ----------coc----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/coc.vim
@@ -232,9 +223,9 @@ source ~/.config/nvim/vim_plugin_snippets/coc.vim
 " =====
 let g:user_emmet_leader_key='<C-c>'
 " =====
-" ----------vim-floaterm----------
+" ----------toggleterm----------
 " =====
-let g:floaterm_keymap_toggle = "<leader>j"
+source ~/.config/nvim/vim_plugin_snippets/toggleterm.lua
 " =====
 " ----------easymotion----------
 " =====
@@ -247,6 +238,8 @@ autocmd User EasyMotionPromptEnd silent! CocEnable
 " =====
 let g:smartim_default = 'com.apple.keylayout.ABC'
 " ==================================================== 
+" syntax enable
+" syntax on
 set encoding=utf8
 " 绑定临时剪切板和系统剪切板
 " set clipboard=unnamedplus
@@ -272,9 +265,7 @@ exec "nohlsearch"
 set incsearch
 set ignorecase
 set smartcase
-
-" set cursor blinking in NeoVim
-set guicursor+=a:-blinkwait175-blinkoff150-blinkon175
+set scrolloff=5
 
 " set no mouse and termial esc to normal mode
 set mouse=
@@ -285,7 +276,6 @@ nnoremap <leader>H <c-w>h
 nnoremap <leader>J <c-w>j
 nnoremap <leader>K <c-w>k
 
-set scrolloff=5
 inoremap ,, <esc>:w<CR>
 vnoremap ,, <esc> 
 
@@ -363,15 +353,14 @@ nnoremap Q :q<CR>
 
 " speed neovim
 nnoremap <Leader>C :!rm ~/.local/state/nvim/shada/main.shada<CR>
-" set ttyfast
-" set lazyredraw
+set ttyfast
+set lazyredraw
+let g:loaded_perl_provider = 0
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_skip_check=1
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:ruby_host_skip_check=1
-let g:ruby_host_prog = exepath('/usr/local/lib/ruby/gems/3.0.0/bin/neovim-ruby-host')
+let g:ruby_host_prog = exepath($GEMPATH.'/neovim-ruby-host')
 let g:node_host_skip_check=1
 let g:node_host_prog = '/usr/local/bin/neovim-node-host'
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
