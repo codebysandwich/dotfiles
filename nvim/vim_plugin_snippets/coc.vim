@@ -5,14 +5,7 @@
 let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-pairs', 'coc-explorer', 
 							\'coc-snippets', 'coc-go', 'coc-marketplace', 'coc-yank', 
 							\'coc-pyright']
-set hidden
-set nobackup
-set nowritebackup
-set updatetime=100
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
-set signcolumn=yes
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 inoremap <silent><expr> <TAB>

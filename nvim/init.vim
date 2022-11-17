@@ -243,7 +243,7 @@ let g:smartim_default = 'com.apple.keylayout.ABC'
 set encoding=utf8
 " 绑定临时剪切板和系统剪切板
 " set clipboard=unnamedplus
-let $LANG = 'en_US.UTF-8'
+" let $LANG = 'en_US.UTF-8'
 set langmenu=en
 set ts=4
 set softtabstop=4
@@ -261,11 +261,18 @@ set foldmethod=indent
 set foldlevelstart=99
 
 set hlsearch
-exec "nohlsearch"
 set incsearch
 set ignorecase
 set smartcase
 set scrolloff=5
+
+set hidden
+set nobackup
+set nowritebackup
+set updatetime=100
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+set signcolumn=yes
 
 " set no mouse and termial esc to normal mode
 set mouse=
