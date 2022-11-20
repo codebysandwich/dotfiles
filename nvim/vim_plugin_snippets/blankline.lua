@@ -20,7 +20,7 @@ vim.g.indent_blankline_filetype_exclude = {
 	"dashboard",
 	"coc-explorer",
 }
-vim.cmd [[highlight IndentBlanklineChar guifg=#3D4350 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineChar guifg=#3D4350 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#FFFB00]]
 -- !! wried TODO
 -- vim.cmd [[highlight IndentBlanklineContextStart guisp=#fb4934 gui=underline cterm=underline]]

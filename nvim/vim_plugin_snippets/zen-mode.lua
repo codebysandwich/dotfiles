@@ -11,3 +11,7 @@ require("zen-mode").setup {
 		-- tmux = { enabled = true },
     }
 }
+
+-- keymap
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>z", "<Cmd>ZenMode<CR>", opts)

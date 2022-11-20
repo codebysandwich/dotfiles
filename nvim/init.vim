@@ -7,7 +7,7 @@
 " -----------vim-plug-----------
 " =====
 " ===========speed up vim-plug=============
-" let g:plug_url_format='https://git::@hub.fastgit.org/%s.git'
+" let g:plug_url_format='https://gitclone.com/github.com/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
 Plug 'nvim-lualine/lualine.nvim'
@@ -30,11 +30,8 @@ Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
 " Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-" colorscheme deus
-Plug 'ajmwagar/vim-deus'
-" Plug 'theniceboy/nvim-deus'
-" Plug 'morhetz/gruvbox'
-" Plug 'ayu-theme/ayu-vim'
+" colorscheme
+Plug 'navarasu/onedark.nvim'
 " highlighting syntax
 " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -57,7 +54,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'ybian/smartim'
 Plug 'folke/zen-mode.nvim'
-Plug 'tweekmonster/startuptime.vim'
 " Initialize plugin system
 call plug#end()
 let mapleader=','
@@ -65,31 +61,10 @@ let mapleader=','
 " -------------配色-----------------
 " =====
 set termguicolors
-" set t_Co=256
-set background=dark
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " =====
-" ----------gruvbox----------
+" ----------colorscheme----------
 " =====
-" let g:gruvbox_contrast_dark = 'medium'
-" colorscheme gruvbox
-" =====
-" ----------deus----------
-" =====
-colorscheme deus
-" let g:deus_termcolors=256
-" adjust signcolun and gitstatus
-hi GitGutterAdd guifg=#98c379 guibg=#242a32
-hi GitGutterChange guifg=#fabd2f guibg=#242a32
-hi GitGutterChangeDelete guifg=#fe8019 guibg=#242a32
-hi GitGutterDelete guifg=#fb4934 guibg=#242a32
-" fix NonText to Comment force
-hi NonText ctermfg=245 guifg=#928374 gui=none
-" =====
-" ----------ayu----------
-" =====
-" let ayucolor="mirage"
-" colorscheme ayu
+source ~/.config/nvim/vim_plugin_snippets/onedark.lua
 
 " 高亮LineNr的颜色 
 " highlight LineNr guifg=#CDD9A
@@ -99,30 +74,7 @@ hi CursorLineNr guifg=#FECB6B
 " =====
 " ----------airline----------
 " =====
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.dirty=''
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.colnr = ' '
-
-" 是否打开tabline
-" let g:airline#extensions#tabline#enabled = 1 "打开后，tabline和tmuxline都可以得到增强
-" let g:airline#extensions#virtualenv#enabled = 1
-" let g:airline#extensions#poetv#enabled = 1
-
-" let g:airline_extensions = ['virtualenv', 'branch', 'hunks', 'coc', 'whitespace']
-" let b:airline_whitespace_checks = ['conflicts']
-" let g:airline#extensions#searchcount#enabled = 0
-" let g:airline#extensions#tagbar#enabled = 0
-" let g:airline#extensions#tabline#enabled = 0
+" source ~/.config/nvim/vim_plugin_snippets/airline.vim
 " =====
 " ----------lualine----------
 " =====
@@ -143,7 +95,6 @@ source ~/.config/nvim/vim_plugin_snippets/blankline.lua
 " ----------zen-mode----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/zen-mode.lua
-nnoremap <Leader>z :ZenMode<CR>
 " =====
 " ----------dashboard----------
 " =====
@@ -218,32 +169,26 @@ source ~/.config/nvim/vim_plugin_snippets/rnvimr.vim
 " ----------coc----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/coc.vim
-" =====
-" ----------emmet----------
-" =====
-let g:user_emmet_leader_key='<C-c>'
+" let g:user_emmet_leader_key='<C-c>'
 " =====
 " ----------toggleterm----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/toggleterm.lua
 " =====
+" ----------wildfire----------
+" =====
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
+" =====
 " ----------easymotion----------
 " =====
-let g:EasyMotion_add_search_history = 0
-nnoremap <leader><leader>s <Plug>(easymotion-sn)
-" vim-easymotion disturbs diagnostics
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd silent! CocEnable
-autocmd User EasyMotionPromptBegin silent! Gitsigns toggle_signs
-autocmd User EasyMotionPromptEnd silent! Gitsigns toggle_signs
-" autocmd User EasyMotionPromptEnd exec nohlsearch
+source ~/.config/nvim/vim_plugin_snippets/easymotion.vim
 " =====
 " ----------smartim----------
 " =====
 let g:smartim_default = 'com.apple.keylayout.ABC'
 " ==================================================== 
-" syntax enable
-" syntax on
+syntax enable
+syntax on
 set encoding=utf8
 " 绑定临时剪切板和系统剪切板
 " set clipboard=unnamedplus
@@ -263,14 +208,12 @@ set wildmenu
 " 设置折叠
 set foldmethod=indent
 set foldlevelstart=99
-
 set hlsearch
 exec "nohlsearch"
 set incsearch
 set ignorecase
 set smartcase
 set scrolloff=5
-
 set hidden
 set nobackup
 set nowritebackup
@@ -278,11 +221,11 @@ set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 set signcolumn=yes
-
 " set no mouse and termial esc to normal mode
 set mouse=
-tnoremap <leader><Esc> <C-\><C-n>
 set splitright
+
+tnoremap <leader><Esc> <C-\><C-n>
 nnoremap <leader>L <c-w>l
 nnoremap <leader>H <c-w>h
 nnoremap <leader>J <c-w>j
@@ -309,7 +252,6 @@ vnoremap <left> <nop>
 vnoremap <right> <nop>
 vnoremap <up> <nop>
 vnoremap <down> <nop>
-
 
 noremap <silent> <leader>l :nohlsearch<CR>
 
@@ -349,7 +291,7 @@ nnoremap <s-tab> :bp<CR>
 " =====
 nnoremap <silent> <leader>. :cd %:p:h<CR>
 " =====
-" ----------source-file----------
+" ----------source-language-file----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/python.vim
 source ~/.config/nvim/vim_plugin_snippets/markdown.vim
@@ -365,8 +307,8 @@ nnoremap Q :q<CR>
 
 " speed neovim
 nnoremap <Leader>C :!rm ~/.local/state/nvim/shada/main.shada<CR>
-set ttyfast
-set lazyredraw
+" set ttyfast
+" set lazyredraw
 let g:loaded_perl_provider = 0
 let g:python_host_skip_check=1
 let g:python_host_prog = '/usr/bin/python'

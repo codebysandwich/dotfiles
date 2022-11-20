@@ -68,7 +68,7 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " let g:coc_snippet_prev = '<S-TAB>'
 " autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " coc-explorer
-nmap <leader><leader>t :CocCommand explorer<CR>
+nmap <leader>t :CocCommand explorer<CR>
 " =====
 " ----------coc-yank----------
 " =====
