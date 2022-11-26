@@ -39,3 +39,8 @@ require('gitsigns').setup {
     enable = false
   },
 }
+
+-- pined blame line color
+vim.cmd([[
+hi GitSignsCurrentLineBlame guifg=#6C717B gui=bold
+]])

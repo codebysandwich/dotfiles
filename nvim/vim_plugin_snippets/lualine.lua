@@ -1,8 +1,8 @@
 local custom_dark = require'lualine.themes.onedark'
 
 local colors = {
-  -- bg = '#272C34',
-  bg = '#1F252E',
+  bg = '#272C34',
+  -- bg = '#1F252E',
 }
 
 -- Change the background of lualine_c section for normal mode

@@ -2,8 +2,8 @@
 " --------- coc --------------
 " =====
 " 自动安装的管理部分
-let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-pairs', 'coc-explorer', 
-							\'coc-snippets', 'coc-go', 'coc-marketplace', 'coc-yank', 
+let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-snippets', 'coc-go', 
+							\'coc-marketplace', 'coc-yank', 
 							\'coc-pyright']
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -34,7 +34,7 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-highlight CocHighlightText ctermfg=223 ctermbg=239 guifg=#ebdbb2 guibg=#336161
+highlight CocHighlightText guibg=#414859
 
 " 设置函数签名触发
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
@@ -66,9 +66,9 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 " =====
 " let g:coc_snippet_next = '<TAB>'
 " let g:coc_snippet_prev = '<S-TAB>'
-" autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+autocmd BufRead,BufNewFile coc-settings.json set filetype=jsonc
 " coc-explorer
-nmap <leader>t :CocCommand explorer<CR>
+" nmap <leader>t :CocCommand explorer<CR>
 " =====
 " ----------coc-yank----------
 " =====

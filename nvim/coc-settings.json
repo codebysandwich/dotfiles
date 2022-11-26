@@ -1,6 +1,6 @@
 {
 	"coc.preferences.extensionUpdateCheck": "daily",
-	"coc.preferences.snippetStatusText": "ⓢ ",
+	"coc.preferences.formatOnSave": true,
 	"suggest.labelMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.autoTrigger": "always",
@@ -45,25 +45,12 @@
 	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
 	"diagnostic.virtualText": true,
 	"codeLens.enable": true,
-	"list.previewHighlightGroup": "statement",
+	"list.previewHighlightGroup": "Search",
 	"list.nextKeymap": "<c-e>",
 	"list.previousKeymap": "<c-u>",
 	"signature.target": "float",
-	"coc.preferences.formatOnSaveFiletypes": [
-		"python",
-		"go",
-		"java",
-		"json",
-		"c",
-		"cpp",
-		"markdown",
-		"js"
-	],
-	"explorer.icon.enableNerdfont": true,
-	"explorer.file.showHiddenFiles": true,
-	"explorer.file.column.indent.indentLine": true,
-	"explorer.previewAction.onHover": "labeling",
-	"explorer.width": 35,
+	"snippets.userSnippetsDirectory": "~/.config/nvim/utils/ultisnips",
+	"snippets.priority": 100,
 	"yank.enableCompletion": false,
 	"python.linting.pylintEnabled": true,
 	"python.linting.pylintArgs": [
@@ -85,6 +72,5 @@
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
-	"snippets.priority": 100,
 	"java.trace.server": "verbose"
 }

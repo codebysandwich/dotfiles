@@ -20,7 +20,7 @@ require'nvim-treesitter.configs'.setup {
 			if ok and stats and stats.size > max_filesize then
 				return true
 			else
-				ls = {"vim", "python"}
+				ls = {"vim", "go"}
 				for i = 0, #ls do
 					if ls[i] == lang then
 						return true
@@ -30,4 +30,13 @@ require'nvim-treesitter.configs'.setup {
 		end,
         additional_vim_regex_highlighting = false,
     },
+	-- incremental_selection = {
+	--     enable = true,
+	--     keymaps = {
+	--         init_selection = "<CR>",
+	--         node_decremental = "<BS>",
+	--         node_incremental = "<CR>",
+	--         scope_incremental = "<TAB>"
+	--     },
+	-- }
 }
