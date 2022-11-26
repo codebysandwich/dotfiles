@@ -50,7 +50,7 @@ nnoremap <leader>P "+P
 inoremap ,, <Esc>
 
 " 切换标签页
-nnoremap <Tab> gt
+nnoremap <leader><Tab> gt
 nnoremap <S-Tab> gT
 
 " action

@@ -9,15 +9,19 @@
 " ===========speed up vim-plug=============
 " let g:plug_url_format='https://gitclone.com/github.com/%s.git'
 call plug#begin('~/.config/nvim/plugged')
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase', 'on': 'HexokinaseToggle' }
 " gitsigns
 Plug 'lewis6991/gitsigns.nvim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'nvim-tree/nvim-tree.lua', {'tag': 'nightly', 'on': 'NvimTreeToggle'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " wakatime
 Plug 'wakatime/vim-wakatime'
@@ -31,13 +35,14 @@ Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " colorscheme
-Plug 'navarasu/onedark.nvim'
+" Plug 'navarasu/onedark.nvim'
+Plug 'codebysandwich/nvim-deus'
 " highlighting syntax
 " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'RRethy/vim-illuminate'
 " highlighting for Python in Neovim
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
@@ -46,7 +51,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'alpertuna/vim-header', {'on': 'AddHeader'}
 Plug 'kshenoy/vim-signature'
-Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*', 'on': 'ToggleTerm'}
 Plug 'kevinhwang91/rnvimr'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'easymotion/vim-easymotion'
@@ -64,12 +69,11 @@ set termguicolors
 " =====
 " ----------colorscheme----------
 " =====
-source ~/.config/nvim/vim_plugin_snippets/onedark.lua
+colorscheme deus
+" source ~/.config/nvim/vim_plugin_snippets/onedark.lua
 
 " 高亮LineNr的颜色 
-" highlight LineNr guifg=#CDD9A
 hi CursorLineNr guifg=#FECB6B
-" hi CocInlayHint ctermfg=245 guifg=#928374 gui=none
 
 " =====
 " ----------airline----------
@@ -87,6 +91,14 @@ source ~/.config/nvim/vim_plugin_snippets/gitsigns.lua
 " ----------bufferline----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/bufferline.lua
+" =====
+" ----------rainbow----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/rainbow.lua
+" =====
+" ----------nvim-tree----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/nvimtree.lua
 " =====
 " ----------indent----------
 " =====
@@ -139,9 +151,13 @@ source ~/.config/nvim/vim_plugin_snippets/vista.vim
 " =====
 source ~/.config/nvim/vim_plugin_snippets/nvim-treesitter.lua
 " =====
+" ----------illuminate----------
+" =====
+" source ~/.config/nvim/vim_plugin_snippets/illuminate.lua
+" =====
 " ----------semshi----------
 " =====
-let g:semshi#mark_selected_nodes = 0
+" let g:semshi#mark_selected_nodes = 0
 " autocmd InsertEnter *.py Semshi pause
 " autocmd InsertLeave *.py Semshi enable
 " =====
@@ -169,15 +185,20 @@ source ~/.config/nvim/vim_plugin_snippets/rnvimr.vim
 " ----------coc----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/coc.vim
-" let g:user_emmet_leader_key='<C-c>'
 " =====
 " ----------toggleterm----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/toggleterm.lua
 " =====
+" ----------autopairs----------
+" =====
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', 
+				  \'`':'`', '<':'>'}
+" =====
 " ----------wildfire----------
 " =====
-let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i>", "i`"]
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
+						 \"ip", "it", "i>", "i`"]
 " =====
 " ----------easymotion----------
 " =====
@@ -234,6 +255,8 @@ nnoremap <leader>K <c-w>k
 inoremap ,, <esc>:w<CR>
 vnoremap ,, <esc> 
 
+nnoremap <c-e> $
+nnoremap <c-a> 0
 inoremap <c-e> <Esc>A
 inoremap <c-a> <Esc>I
 
@@ -284,7 +307,10 @@ inoremap <leader>w <Esc>:bd<CR>
 nnoremap <leader>w :bd<CR>
 nnoremap <leader>q :bd!<CR>
 
-nnoremap <tab> :bn<CR>
+" : TODO in tmux
+" nnoremap <C-i> <C-i>
+" nnoremap <tab> :bn<CR>
+nnoremap <leader><tab> :bn<CR>
 nnoremap <s-tab> :bp<CR>
 " =====
 " ----------切换工作目录到当前文件所在的目录----------
