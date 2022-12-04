@@ -1,7 +1,8 @@
 noremap <leader>v :Vista!!<CR>
 " noremap <leader>tv :silent! Vista finder fzf<CR>
 " let g:vista_fzf_preview = ['right:50%']
-let g:vista_default_executive = 'ctags'
+" let g:vista_default_executive = 'ctags'
+let g:vista_default_executive = 'coc'
 let g:vista_executive_for = {
   \ 'cpp': 'vim_lsp',
   \ 'php': 'vim_lsp',
