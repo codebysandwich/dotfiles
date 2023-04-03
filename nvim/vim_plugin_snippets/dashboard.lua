@@ -1,73 +1,55 @@
-local home = os.getenv('HOME')
-local db = require('dashboard')
+vim.cmd([[
+	hi DashboardHeader guifg=#FFAA02
+	hi DashboardFooter guifg=#F39939
+	hi DashboardProjectIcon guifg=#FFAA02
+	hi DashboardProjectTitleIcon guifg=#07A5A9
+	hi DashboardProjectTitle guifg=#1C81D9
+	hi DashboardMruIcon guifg=#07A5A9
+	hi DashboardMruTitle guifg=#1C81D9
+]])
+local function gen_footer()
+	return {
+		'',
+		'',
+		'',
+		'neovim loaded ' .. #vim.tbl_keys(vim.g.plugs) .. ' packages',
+		'',
+		' 🚀 Sharp tools make good work.',
+	}
+end
 
-db.custom_header = {
-	"",
-	"",
-	"",
-	"███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-	"████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-	"██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-	"██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-	"██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-	"╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-	"",
-	"",
-	"",
-	"",
-}
-
-db.custom_center = {
-      {icon = '  ',
-      desc = 'Recently latest session                 ',
-      shortcut = 'SPC s l',
-      action ='SessionLoad'},
-      {icon = '  ',
-      desc = 'Recently opened files                   ',
-      action =  'DashboardFindHistory',
-      shortcut = 'SPC f h'},
-      {icon = '  ',
-      desc = 'Find  File                              ',
-      action = 'Telescope find_files find_command=rg,--hidden,--files',
-      shortcut = 'SPC f f'},
-      {icon = '  ',
-      desc ='File Browser                            ',
-      action =  'Telescope file_browser',
-      shortcut = 'SPC f b'},
-      {icon = '  ',
-      desc = 'Find  word                              ',
-      action = 'Telescope live_grep',
-      shortcut = 'SPC f w'},
-      {icon = '  ',
-      desc = 'Open Personal dotfiles                  ',
-      action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
-      shortcut = 'SPC f d'},
-}
-
--- Highlight Group
-
--- " let g:dashboard_preview_command="cat"
--- " let g:dashboard_preview_file="~/.config/nvim/vim_plugin_snippets/asc.cat"
--- " let g:dashboard_preview_pipeline="lolcat"
--- " let g:dashboard_preview_file_width=80
--- " let g:dashboard_preview_file_height=12
--- "
-
--- vim.g.dashboard_default_executive='telescope'
-
--- let g:dashboard_custom_shortcut={
---   \ 'last_session' : 'SPC s l',
---   \ 'find_history' : 'SPC f h',
---   \ 'find_file' : 'SPC f f',
---   \ 'new_file' : 'SPC c n',
---   \ 'change_colorscheme' : 'SPC t c',
---   \ 'find_word' : 'SPC f a',
---   \ 'book_marks' : 'SPC f m',
---   \ }
-
--- nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
--- nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
--- nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
--- nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
--- nnoremap <silent> <Leader>fm :DashboardJumpMark<CR>
--- nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+require('dashboard').setup({
+    theme = 'hyper',
+	change_to_vcs_root = true,
+    config = {
+      week_header = {
+       enable = true,
+      },
+      shortcut = {
+        { desc = ' NewFile', group = '@function', action = 'enew', key = 'n' },
+        { desc = ' Update', group = '@property', action = 'PlugUpdate', key = 'u' },
+        {
+          icon = ' ',
+          icon_hl = '@character.special',
+          desc = 'Files',
+          group = 'Label',
+          action = 'Telescope find_files',
+          key = 'f',
+        },
+        {
+          desc = ' Apps',
+          group = 'DiagnosticInfo',
+          action = 'Telescope app',
+          key = 'a',
+        },
+        {
+          desc = ' Quit',
+          group = '@keyword',
+          action = 'q',
+          key = 'q',
+        },
+      },
+	  packages = { enable = false},
+	  footer = gen_footer,
+    }, 
+}) 

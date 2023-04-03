@@ -45,3 +45,8 @@ require('onedark').setup  {
 }
 
 onedark.load()
+
+vim.cmd([[
+	hi link @preproc Comment
+	hi rainbowcol1 guifg=#D09A66
+]])

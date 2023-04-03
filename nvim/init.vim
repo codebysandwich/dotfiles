@@ -10,7 +10,7 @@
 " let g:plug_url_format='https://gitclone.com/github.com/%s.git'
 call plug#begin('~/.config/nvim/plugged')
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'glepnir/dashboard-nvim', {'branch': 'remove-default-header'}
+Plug 'glepnir/dashboard-nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'p00f/nvim-ts-rainbow'
@@ -23,10 +23,12 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'honza/vim-snippets'
 Plug 'nvim-tree/nvim-tree.lua', {'tag': 'nightly', 'on': 'NvimTreeToggle'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kevinhwang91/nvim-bqf'
 " wakatime
 Plug 'wakatime/vim-wakatime'
 Plug 'preservim/nerdcommenter'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/virt-column.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown'}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
@@ -34,13 +36,19 @@ Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
 " Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'folke/todo-comments.nvim'
+" Plug 'folke/noice.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'rcarriga/nvim-notify'
 " colorscheme
 " Plug 'navarasu/onedark.nvim'
+" Plug 'sainnhe/sonokai'
 Plug 'codebysandwich/nvim-deus'
+" Plug 'Shatur/neovim-ayu'
 " highlighting syntax
 " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'RRethy/vim-illuminate'
+Plug 'nvim-treesitter/playground'
 " highlighting for Python in Neovim
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 Plug 'gcmt/wildfire.vim'
@@ -55,6 +63,7 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*', 'on': 'ToggleTerm'}
 Plug 'kevinhwang91/rnvimr'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'easymotion/vim-easymotion'
+" Plug 'ggandor/leap.nvim'
 " 前端插件
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'ybian/smartim'
@@ -71,9 +80,16 @@ set termguicolors
 " =====
 colorscheme deus
 " source ~/.config/nvim/vim_plugin_snippets/onedark.lua
-
-" 高亮LineNr的颜色 
+" source ~/.config/nvim/vim_plugin_snippets/ayu.lua
+" source ~/.config/nvim/vim_plugin_snippets/sonokai.vim
+" highlighting LineNr
 hi CursorLineNr guifg=#FECB6B
+
+" TODO: high version iterm2
+" Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " =====
 " ----------airline----------
@@ -103,6 +119,7 @@ source ~/.config/nvim/vim_plugin_snippets/nvimtree.lua
 " ----------indent----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/blankline.lua
+source ~/.config/nvim/vim_plugin_snippets/column.lua
 " =====
 " ----------zen-mode----------
 " =====
@@ -110,7 +127,7 @@ source ~/.config/nvim/vim_plugin_snippets/zen-mode.lua
 " =====
 " ----------dashboard----------
 " =====
-source ~/.config/nvim/vim_plugin_snippets/dashboard.vim
+source ~/.config/nvim/vim_plugin_snippets/dashboard.lua
 " =====
 " ----------markdown preview----------
 " =====
@@ -133,6 +150,15 @@ let g:NERDDefaultAlign = 'left'
 " =====
 source ~/.config/nvim/vim_plugin_snippets/telescope.lua
 " =====
+" ----------todo-comments----------
+" =====
+" NOTE this is test
+source ~/.config/nvim/vim_plugin_snippets/todo_comments.lua
+" =====
+" ----------noice----------
+" =====
+" source ~/.config/nvim/vim_plugin_snippets/noice.lua
+" =====
 " ----------vim header----------
 " =====
 let g:header_field_author = 'sandwich'
@@ -140,7 +166,7 @@ let g:header_field_author_email = ''
 let g:header_field_timestamp_format = '%Y-%m-%d %H:%M:%S'
 let g:header_auto_add_header = 0
 let g:header_auto_update_header = 1
-autocmd BufNewFile *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
+autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
 
 " =====
 " ----------vista----------
@@ -186,23 +212,28 @@ source ~/.config/nvim/vim_plugin_snippets/rnvimr.vim
 " =====
 source ~/.config/nvim/vim_plugin_snippets/coc.vim
 " =====
+" ----------bqf----------
+" =====
+source ~/.config/nvim/vim_plugin_snippets/bqf.lua
+" =====
 " ----------toggleterm----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/toggleterm.lua
-" =====
-" ----------autopairs----------
-" =====
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', 
-				  \'`':'`', '<':'>'}
 " =====
 " ----------wildfire----------
 " =====
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
 						 \"ip", "it", "i>", "i`"]
+" fix disable enter in quickfix
+let g:wildfire_fuel_map = get(g:, "wildfire_fuel_map", "<SPACE>")
 " =====
 " ----------easymotion----------
 " =====
 source ~/.config/nvim/vim_plugin_snippets/easymotion.vim
+" =====
+" ----------leap----------
+" =====
+" source ~/.config/nvim/vim_plugin_snippets/leap.lua
 " =====
 " ----------smartim----------
 " =====
@@ -228,6 +259,9 @@ set showcmd
 set wildmenu
 " 设置折叠
 set foldmethod=indent
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+" Disable folding at startup.
 set foldlevelstart=99
 set hlsearch
 exec "nohlsearch"
@@ -240,22 +274,22 @@ set nobackup
 set nowritebackup
 set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+" set shortmess+=c
 set signcolumn=yes
-" set no mouse and termial esc to normal mode
+" set no mouse
 set mouse=
 set splitright
 
 tnoremap <leader><Esc> <C-\><C-n>
-nnoremap <leader>L <c-w>l
-nnoremap <leader>H <c-w>h
-nnoremap <leader>J <c-w>j
-nnoremap <leader>K <c-w>k
+nnoremap <M-right> <c-w>l
+nnoremap <M-left> <c-w>h
+nnoremap <M-down> <c-w>j
+nnoremap <M-up> <c-w>k
 
-inoremap ,, <esc>:w<CR>
-vnoremap ,, <esc> 
+inoremap <silent> ,, <esc>:w<CR>
+vnoremap <silent> ,, <esc>
 
-nnoremap <c-e> $
+" nnoremap <c-e> $
 nnoremap <c-a> 0
 inoremap <c-e> <Esc>A
 inoremap <c-a> <Esc>I
@@ -296,22 +330,24 @@ inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
 " =====
-" ----------复制当前行到下一行上一行----------
+" ----------duplicate current line----------
 " =====
 inoremap <M-J> <Esc>yypA
 inoremap <M-K> <Esc>yyPA
 nnoremap <M-J> yyp
 nnoremap <M-K> yyP
 
-inoremap <leader>w <Esc>:bd<CR>
 nnoremap <leader>w :bd<CR>
 nnoremap <leader>q :bd!<CR>
 
-" : TODO in tmux
+"  TODO: in tmux
 " nnoremap <C-i> <C-i>
-" nnoremap <tab> :bn<CR>
-nnoremap <leader><tab> :bn<CR>
-nnoremap <s-tab> :bp<CR>
+" " nnoremap <tab> :bn<CR>
+" nnoremap <leader><tab> :bn<CR>
+" nnoremap <s-tab> :bp<CR>
+" use switch tabs instead of buffers
+nnoremap gt :bn<CR>
+nnoremap gT :bp<CR>
 " =====
 " ----------切换工作目录到当前文件所在的目录----------
 " =====
@@ -319,20 +355,14 @@ nnoremap <silent> <leader>. :cd %:p:h<CR>
 " =====
 " ----------source-language-file----------
 " =====
-source ~/.config/nvim/vim_plugin_snippets/python.vim
-source ~/.config/nvim/vim_plugin_snippets/markdown.vim
-source ~/.config/nvim/vim_plugin_snippets/go.vim
-source ~/.config/nvim/vim_plugin_snippets/cpp.vim
-source ~/.config/nvim/vim_plugin_snippets/c.vim
-source ~/.config/nvim/vim_plugin_snippets/json.vim
-source ~/.config/nvim/vim_plugin_snippets/java.vim
+source ~/.config/nvim/vim_plugin_snippets/autorun.vim
 
-nnoremap S :w<CR>
-nnoremap R :source $MYVIMRC<CR>
-nnoremap Q :q<CR>
+nnoremap <silent> S :w<CR>
+nnoremap <silent> R :source $MYVIMRC<CR>
+nnoremap <silent> Q :q<CR>
 
 " speed neovim
-nnoremap <Leader>C :!rm ~/.local/state/nvim/shada/main.shada<CR>
+nnoremap <silent> <Leader>C :!rm ~/.local/state/nvim/shada/main.shada<CR>
 " set ttyfast
 " set lazyredraw
 let g:loaded_perl_provider = 0

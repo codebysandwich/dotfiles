@@ -1,9 +1,3 @@
--- " Find files using Telescope command-line sugar.
--- " nnoremap <leader>fb <cmd>Telescope buffers<cr>
--- " nnoremap <leader>fl <cmd>Telescope help_tags<cr>
--- " nnoremap <leader>fk <cmd>Telescope keymaps<cr>
--- " nnoremap <leader>ft <cmd>Telescope treesitter<cr>
-
 -- " autocmd User TelescopePreviewerLoaded setlocal wrap
 
 local status_ok, telescope = pcall(require, "telescope")
@@ -16,7 +10,8 @@ telescope.setup {
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
-    }
+		initial_mode = "normal",
+    },
 }
 
 local builtin = require('telescope.builtin')
@@ -25,3 +20,7 @@ vim.keymap.set('n', '<leader>fl', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 vim.keymap.set('n', '<leader>ft', builtin.treesitter, opts)
+vim.keymap.set('n', '<leader>fh', builtin.oldfiles, opts)
+vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>fa', builtin.live_grep, opts)
+vim.keymap.set('n', '<leader>fm', builtin.marks, opts)

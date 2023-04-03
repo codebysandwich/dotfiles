@@ -19,11 +19,9 @@ vim.g.indent_blankline_filetype_exclude = {
 	"man",
 	"dashboard",
 	"coc-explorer",
+	"vista",
+	"NvimTree",
 }
-vim.cmd [[highlight IndentBlanklineChar guifg=#3D4350 gui=nocombine]]
--- vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#FFFB00]]
--- !! wried TODO
--- vim.cmd [[highlight IndentBlanklineContextStart guisp=#fb4934 gui=underline cterm=underline]]
 
 require("indent_blankline").setup {
 	char = "▏",
@@ -32,6 +30,10 @@ require("indent_blankline").setup {
 	show_current_context_start = true,
 }
 
+vim.cmd [[highlight IndentBlanklineChar guifg=#3D4350 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#fb4934]]
+-- !! wried TODO
+vim.cmd [[highlight IndentBlanklineContextStart guisp=#fb4934 gui=underline]]
 
 -- keymap
 local opts = { noremap = true, silent = true }

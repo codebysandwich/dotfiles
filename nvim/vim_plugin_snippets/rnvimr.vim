@@ -1,4 +1,4 @@
-let g:rnvimr_enable_ex = 1
+let g:rnvimr_enable_ex = 0
 let g:rnvimr_enable_picker = 1
 let g:rnvimr_draw_border = 1
 let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}

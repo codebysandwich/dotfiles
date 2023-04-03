@@ -6,7 +6,7 @@ let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-snippets', 'coc-go',
 							\'coc-marketplace', 'coc-yank', 
 							\'coc-pyright']
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 inoremap <silent><expr> <TAB>
 	  \ coc#pum#visible() ? coc#pum#next(1) :
@@ -28,17 +28,18 @@ function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
 	call CocActionAsync('doHover')
   else
-	call feedkeys('<leader>h', 'in')
+	call feedkeys('K', 'in')
   endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight CocHighlightText guibg=#414859
+highlight CocFadeOut guifg=gray
 
 " 设置函数签名触发
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
+autocmd CursorHoldI,CursorMovedI * silent call CocActionAsync('showSignatureHelp')
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

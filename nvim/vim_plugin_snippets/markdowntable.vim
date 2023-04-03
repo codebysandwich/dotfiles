@@ -15,3 +15,8 @@ inoreabbrev <expr> <bar><bar>
 inoreabbrev <expr> __
           \ <SID>isAtStartOfLine('__') ?
           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
+nnoremap tt <Plug>(table-mode-tableize)
+xnoremap tt <Plug>(table-mode-tableize)
+autocmd BufNewFile,BufRead *.md silent! unmap <leader>tm
+nnoremap tm :TableModeToggle<CR>

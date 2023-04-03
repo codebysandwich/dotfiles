@@ -6,17 +6,20 @@ let mapleader = ","
 
 " 应用插件支持
 set easymotion
+" remap easymotion prefix
+" map <Leader> <Plug>(easymotion-prefix)
+nmap <leader>s <Plug>(easymotion-s)
 set surround
 set highlightedyank
 set multiple-cursors
-" remap easymotion prefix
-map <Leader> <Plug>(easymotion-prefix)
 " Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
 xmap n <Plug>NextOccurrence
 xmap q <Plug>SkipOccurrence
 xmap Q <Plug>RemoveOccurrence
+set NERDTree
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " 设置相对行号
 set number
@@ -26,6 +29,7 @@ set clipboard=unnamed
 " unable vim's fold
 " set nofoldenable
 set hlsearch
+exec "nohlsearch"
 set incsearch
 set smartcase
 set ignorecase
@@ -35,7 +39,6 @@ set keep-english-in-normal
 set keep-english-in-normal-and-restore-in-insert
 
 nnoremap <leader>l :noh<CR>
-nnoremap zc zc0
 
 set scrolloff=5
 
@@ -44,19 +47,47 @@ nnoremap K 5k
 nnoremap J 5j
 vnoremap K 5k
 vnoremap J 5j
+inoremap <c-e> <Esc>A
+inoremap <c-a> <Esc>I
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
-inoremap ,, <Esc>
+inoremap ,, <Esc>:w<CR>:action ReformatCode<CR>
+" fix move back
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
 
 " 切换标签页
 nnoremap <leader><Tab> gt
 nnoremap <S-Tab> gT
 
 " action
+nnoremap <leader>w :action CloseContent<CR>
 nnoremap <leader>r :action RunClass<CR>
 nnoremap <leader>R :action RunMenu<CR>
+nnoremap <leader>c<Space> :action CommentByLineComment<CR>
+vnoremap <leader>c<Space> :action CommentByLineComment<CR>
 
+nnoremap ga :action GotoAction<CR>
+vnoremap ga :action GotoAction<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gu :action ShowUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap rn :action RenameElement<CR>
+
+" wildfire
+nnoremap <Space> :action EditorSelectWord<CR>
+nnoremap <Bs> :action EditorUnSelectWord<CR>
+vnoremap <Space> :action EditorSelectWord<CR>
+vnoremap <Bs> :action EditorUnSelectWord<CR>
+"vista
+nnoremap <leader>v :action ActivateStructureToolWindow<CR>
+"
+nnoremap <C-\> :action ActivateTerminalToolWindow<CR>
+nnoremap <A-k> :action MoveLineUp<CR>
+nnoremap <A-j> :action MoveLineDown<CR>
+vnoremap <A-k> :action MoveLineUp<CR>
+vnoremap <A-j> :action MoveLineDown<CR>
 " format code
 nnoremap <leader>f :action ReformatCode<CR>
 

@@ -1,6 +1,6 @@
 .DS_Store
 
+# plugins
 nvim/plugged/
-nvim/pack/
-
-backpack/
+# backup plugins
+nvim/backpack/

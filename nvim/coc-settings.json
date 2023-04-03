@@ -1,6 +1,8 @@
 {
 	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"coc.preferences.formatOnSave": true,
+	"coc.preferences.useQuickfixForLocations": true,
 	"suggest.labelMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.autoTrigger": "always",
@@ -50,7 +52,7 @@
 	"list.previousKeymap": "<c-u>",
 	"signature.target": "float",
 	"snippets.userSnippetsDirectory": "~/.config/nvim/utils/ultisnips",
-	"snippets.priority": 100,
+	"tabnine.priority": 70,
 	"yank.enableCompletion": false,
 	"python.linting.pylintEnabled": true,
 	"python.linting.pylintArgs": [
@@ -58,7 +60,7 @@
 		"--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon",
 		"--enable=global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string",
 		"--enable=anomalous-backslash-in-string,bad-open-mode,unused-import",
-		"--extension-pkg-whitelist=PyQt5"
+		"--extension-pkg-whitelist=PyQt5",
 	],
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
@@ -66,11 +68,12 @@
 		"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
 	],
 	"python.pythonPath": "/usr/local/bin/python3",
-	"pyright.disableDiagnostics": true,
 	"python.analysis.autoImportCompletions": false,
+	"pyright.disableDiagnostics": true,
 	"pyright.inlayHints.variableTypes": false,
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
-	"java.trace.server": "verbose"
+	"java.trace.server": "verbose",
+	"java.inlayHints.parameterNames.enabled": "none",
 }

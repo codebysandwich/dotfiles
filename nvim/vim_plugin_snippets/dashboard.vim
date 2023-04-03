@@ -27,7 +27,7 @@ let g:dashboard_custom_shortcut={
   \ 'last_session' : 'SPC s l',
   \ 'find_history' : 'SPC f h',
   \ 'find_file' : 'SPC f f',
-  \ 'new_file' : 'SPC c n',
+  \ 'new_file' : 'SPC f n',
   \ 'change_colorscheme' : 'SPC d c',
   \ 'find_word' : 'SPC f a',
   \ 'book_marks' : 'SPC f m',
@@ -38,4 +38,4 @@ nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
 nnoremap <silent> <Leader>dc :DashboardChangeColorscheme<CR>
 nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
 nnoremap <silent> <Leader>fm :DashboardJumpMark<CR>
-nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+nnoremap <silent> <Leader>fn :DashboardNewFile<CR>
