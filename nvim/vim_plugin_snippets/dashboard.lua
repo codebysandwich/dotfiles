@@ -49,7 +49,7 @@ require('dashboard').setup({
           key = 'q',
         },
       },
-	  packages = { enable = false},
-	  footer = gen_footer,
+	  packages = { enable = true},
+	  -- footer = gen_footer,
     }, 
 }) 

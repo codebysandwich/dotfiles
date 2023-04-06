@@ -9,7 +9,7 @@
 " ===========speed up vim-plug=============
 " let g:plug_url_format='https://gitclone.com/github.com/%s.git'
 call plug#begin('~/.config/nvim/plugged')
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'glepnir/dashboard-nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
@@ -110,7 +110,7 @@ source ~/.config/nvim/vim_plugin_snippets/bufferline.lua
 " =====
 " ----------rainbow----------
 " =====
-source ~/.config/nvim/vim_plugin_snippets/rainbow.lua
+" source ~/.config/nvim/vim_plugin_snippets/rainbow.lua
 " =====
 " ----------nvim-tree----------
 " =====

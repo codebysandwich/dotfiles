@@ -35,8 +35,8 @@ require("nvim-tree").setup{
 		icons = {
 			glyphs = {
 				git = {
-					untracked = '?',
-					deleted = '𝐃',
+					untracked = '',
+					deleted = '',
 				},
 			},
 		},
@@ -50,12 +50,28 @@ require("nvim-tree").setup{
 	},
 	-- disable open folder actived
 	hijack_directories = {
-		  enable = true,
-		  auto_open = true,
-    },
+		enable = true,
+		auto_open = true,
+	},
 }
 
+local function open_nvim_tree(data)
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then
+    return
+  end
+
+  -- change to the directory
+  vim.cmd.cd(data.file)
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
 
 -- keymap
 local opts = { noremap = true, silent = true }
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 vim.api.nvim_set_keymap("n", "<leader>t", "<Cmd>NvimTreeToggle<CR>", opts)
