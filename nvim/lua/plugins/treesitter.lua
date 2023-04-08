@@ -2,7 +2,7 @@ return {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ":TSUpdate",
-		config = function(_, opts)
+		config = function()
 			require'nvim-treesitter.configs'.setup {
 				-- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ensure_installed = { "c", "cpp", "java", "lua", "python", "vim", "go" },
@@ -59,9 +59,9 @@ return {
 			}
 		end,
 	},
-	{'p00f/nvim-ts-rainbow',},
+	{'p00f/nvim-ts-rainbow', event = "BufReadPre",},
 	{
-		'nvim-treesitter/playground',
+		'nvim-treesitter/playground', cmd = {"TSPlaygroundToggle", 'TSHighlightCapturesUnderCursor'},
 		dependencies = 'nvim-treesitter/nvim-treesitter',
 	},
 }

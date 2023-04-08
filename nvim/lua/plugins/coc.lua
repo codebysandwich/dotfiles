@@ -2,6 +2,14 @@ return {
 	{
 		'neoclide/coc.nvim',
 		branch = 'release',
+		event = 'InsertEnter',
+		init = function()
+			vim.cmd([[
+			inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+										  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			]])
+
+		end,
 		config = function()
 			vim.cmd([[
 			let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-snippets', 'coc-go', 
@@ -16,8 +24,6 @@ return {
 				  \ coc#refresh()
 			inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-			inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-										  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 			function! CheckBackspace() abort
 			  let col = col('.') - 1

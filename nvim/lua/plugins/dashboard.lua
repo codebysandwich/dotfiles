@@ -2,7 +2,8 @@ return {
 	{
 		'glepnir/dashboard-nvim',
 		dependencies = { {'nvim-tree/nvim-web-devicons'} },
-		config = function(_, opts)
+		event = 'VimEnter',
+		config = function()
 			vim.cmd([[
 				hi DashboardHeader guifg=#FFAA02
 				hi DashboardFooter guifg=#F39939

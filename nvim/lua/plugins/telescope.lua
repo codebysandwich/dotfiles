@@ -2,6 +2,16 @@ return {
 	{'nvim-lua/plenary.nvim', },
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		keys = {
+			{'<leader>fl', mode='n'},
+			{'<leader>fk', mode='n'},
+			{'<leader>fb', mode='n'},
+			{'<leader>ft', mode='n'},
+			{'<leader>fh', mode='n'},
+			{'<leader>ff', mode='n'},
+			{'<leader>fa', mode='n'},
+			{'<leader>fm', mode='n'},
+		},
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			require('telescope').setup {

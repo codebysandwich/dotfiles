@@ -2,6 +2,7 @@ return {
 	{
 		'liuchengxu/vista.vim',
 		-- cmd = 'Vista!!',
+		keys = {{'<leader>v', mode='n'}},
 		config = function()
 			vim.cmd([[
 			noremap <silent> <leader>v :Vista!!<CR>

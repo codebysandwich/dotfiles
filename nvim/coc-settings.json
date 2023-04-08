@@ -75,5 +75,6 @@
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 	"java.trace.server": "verbose",
-	"java.inlayHints.parameterNames.enabled": "none",
+  "java.inlayHints.parameterNames.enabled": "none",
+  "snippets.ultisnips.pythonPrompt": false,
 }

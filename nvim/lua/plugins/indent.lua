@@ -1,8 +1,8 @@
 return {
 	{
-		'lukas-reineke/indent-blankline.nvim', cmd = 'IndentBlanklineToggle',
-		lazy = false,
-		config = function()
+		'lukas-reineke/indent-blankline.nvim',
+		cmd = 'IndentBlanklineToggle',
+		init = function()
 			vim.opt.list = false
 			-- vim.opt.listchars:append "space:⋅"
 			-- vim.opt.listchars:append "eol:↴"
@@ -22,30 +22,30 @@ return {
 				"vista",
 				"NvimTree",
 			}
-
-			require("indent_blankline").setup {
-				char = "▏",
-				context_char = "▏",
-				-- space_char_blankline = " ",
-				show_current_context = true,
-				show_current_context_start = true,
-			}
+			-- keymap
+			local opts = { noremap = true, silent = true }
+			vim.api.nvim_set_keymap("n", "<leader>T", "<Cmd>IndentBlanklineToggle<CR>", opts)
 
 			vim.cmd [[highlight IndentBlanklineChar guifg=#3D4350 gui=nocombine]]
 			vim.cmd [[highlight IndentBlanklineContextChar gui=nocombine guifg=#fb4934]]
 			--  TODO: iterm2 underline
 			vim.cmd [[highlight IndentBlanklineContextStart guisp=#fb4934 gui=underline]]
-
-			-- keymap
-			local opts = { noremap = true, silent = true }
-			vim.api.nvim_set_keymap("n", "<leader>T", "<Cmd>IndentBlanklineToggle<CR>", opts)
-		end
+		end,
+		opts = {
+			char = "▏",
+			context_char = "▏",
+			-- space_char_blankline = " ",
+			show_current_context = true,
+			show_current_context_start = true,
+		}
 	},
 	{
 		'lukas-reineke/virt-column.nvim', 
-		config = function()
-			require('virt-column').setup()
-			vim.cmd([[hi link VirtColumn IndentBlanklineChar]])
-		end
+		-- keys = {{'<leader>T', mode='n'}},
+		event = 'CmdlineEnter',
+		init = function()
+			vim.cmd([[hi VirtColumn guifg=#3D4350 guibg=none]])
+		end,
+		config = true
 	},
 }

@@ -27,8 +27,19 @@ opt.writebackup = false
 opt.updatetime = 100
 opt.signcolumn = "yes"
 
+vim.g.loaded_perl_provider = 0
+vim.g.python_host_skip_check=1
+vim.g.python_host_prog = '/usr/bin/python'
+vim.g.python3_host_skip_check=1
+vim.g.python3_host_prog = '/usr/local/bin/python3'
+vim.g.ruby_host_skip_check=1
+vim.g.ruby_host_prog = vim.fn.exepath(vim.env.GEMPATH..'/neovim-ruby-host')
+vim.g.node_host_skip_check=1
+vim.g.node_host_prog = '/usr/local/bin/neovim-node-host'
+
 
 vim.cmd([[
+	exec "nohlsearch"
 	set foldmethod=indent
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()

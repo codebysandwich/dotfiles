@@ -1,7 +1,7 @@
 return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = { {'nvim-tree/nvim-web-devicons'} },
-	config = function(_, opts)
+	config = function()
 		local custom_dark = require'lualine.themes.onedark'
 		-- local custom_dark = require'lualine.themes.ayu'
 		-- local custom_dark = require'lualine.themes.sonokai'

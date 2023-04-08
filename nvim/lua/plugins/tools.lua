@@ -4,18 +4,37 @@ return {
 		build = 'make hexokinase',
 		cmd = 'HexokinaseToggle'
 	},
-	{'jiangmiao/auto-pairs'},
-	{'honza/vim-snippets'},
-	{'wakatime/vim-wakatime'},
+	{
+		'jiangmiao/auto-pairs', 
+	},
+	{'honza/vim-snippets', event='InsertEnter'},
+	{'wakatime/vim-wakatime', event='InsertEnter'},
 	{
 		'gcmt/wildfire.vim',
+		keys = {{'<space>', mode='n'}},
+		init = function()
+			vim.cmd([[
+			let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
+						 \"ip", "it", "i>", "i`"]
+			" fix disable enter in quickfix
+			let g:wildfire_fuel_map = get(g:, "wildfire_fuel_map", "<SPACE>")
+			]])
+		end
 	},
 	{'tpope/vim-surround'},
-	{'godlygeek/tabular'},
-	{'kshenoy/vim-signature'},
+	{'godlygeek/tabular', event='CmdlineEnter'},
+	{
+		'kshenoy/vim-signature', 
+		event = 'VeryLazy',
+	},
 	{
 		'alpertuna/vim-header',
 		cmd = 'AddHeader',
+		init = function()
+			vim.cmd([[
+			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
+			]])
+		end,
 		config = function()
 			vim.cmd([[
 			let g:header_field_author = 'sandwich'
@@ -23,12 +42,14 @@ return {
 			let g:header_field_timestamp_format = '%Y-%m-%d %H:%M:%S'
 			let g:header_auto_add_header = 0
 			let g:header_auto_update_header = 1
-			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
 			]])
 		end
 	},
 	{
 		'preservim/nerdcommenter',
+		keys = {
+			{'<leader>c<space>', mode={'n', 'x'}},
+		},
 		config = function()
 			vim.cmd([[
 			let g:NERDCustomDelimiters = {"vim": {"left": "\" "}, "lua": {"left": "-- "}}
@@ -39,15 +60,22 @@ return {
 	},
 	{
 		'mg979/vim-visual-multi',
-		config = function()
+		keys = {
+			{'<C-j>', mode='n'},
+			{'<C-k>', mode='n'},
+			{'<C-n>', mode='n'},
+		},
+		init = function()
 			vim.cmd([[
-			map <C-j> <Plug>(VM-Add-Cursor-Down)
-			map <C-k> <Plug>(VM-Add-Cursor-Up)
+			let g:VM_maps = {}
+			let g:VM_maps["Add Cursor Down"]    = '<C-j>'   " new cursor down
+			let g:VM_maps["Add Cursor Up"]      = '<C-k>'   " new cursor up
 			]])
-		end
+		end,
 	},
 	{
 		'easymotion/vim-easymotion',
+		keys = {{'<leader>s', mode='n'}, {'<leader>S', mode='n'}},
 		config = function()
 			vim.cmd([[
 			let g:EasyMotion_add_search_history = 0
@@ -63,6 +91,7 @@ return {
 	},
 	{
 		'ybian/smartim',
+		keys = {{ '<esc>', mode={'i'}}},
 		config = function()
 			vim.cmd([[
 			let g:smartim_default = 'com.apple.keylayout.ABC'
@@ -71,28 +100,30 @@ return {
 	},
 	{
 		'folke/zen-mode.nvim', cmd='ZenMode',
+		keys = {{'<leader>z', mode='n', desc='zenmode'}},
 		config = function()
 			require("zen-mode").setup {
-			window = {
-				backdrop = 1,
-				width = 1, 
-				height = 1,
-			},
-			plugins = {
-				options = {
-					showcmd = false,
+				window = {
+					backdrop = 1,
+					width = 1, 
+					height = 1,
 				},
-				-- tmux = { enabled = true },
+				plugins = {
+					options = {
+						showcmd = false,
+					},
+					-- tmux = { enabled = true },
+				}
 			}
-		}
 
-		-- keymap
-		local opts = { noremap = true, silent = true }
-		vim.api.nvim_set_keymap("n", "<leader>z", "<Cmd>ZenMode<CR>", opts)
+			-- keymap
+			local opts = { noremap = true, silent = true }
+			vim.api.nvim_set_keymap("n", "<leader>z", "<Cmd>ZenMode<CR>", opts)
 		end
 	},
 	{
 		'kevinhwang91/rnvimr',
+		keys = {{ 'ra',  mode='n' }},
 		config = function()
 			vim.cmd([[
 			let g:rnvimr_enable_ex = 0
