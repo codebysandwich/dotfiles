@@ -17,6 +17,14 @@ return {
 	{
 		'dhruvasagar/vim-table-mode',
 		ft = 'markdown',
+		init = function()
+			vim.cmd([[
+			nnoremap tt <Plug>(table-mode-tableize)
+			xnoremap tt <Plug>(table-mode-tableize)
+			autocmd BufNewFile,BufRead *.md silent! unmap <leader>tm
+			nnoremap tm :TableModeToggle<CR>
+			]])
+		end,
 		config = function()
 			vim.cmd([[
 			let g:table_mode_corner = '|'
@@ -36,11 +44,6 @@ return {
 			inoreabbrev <expr> __
 					  \ <SID>isAtStartOfLine('__') ?
 					  \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-
-			nnoremap tt <Plug>(table-mode-tableize)
-			xnoremap tt <Plug>(table-mode-tableize)
-			autocmd BufNewFile,BufRead *.md silent! unmap <leader>tm
-			nnoremap tm :TableModeToggle<CR>
 			]])
 		end
 	},

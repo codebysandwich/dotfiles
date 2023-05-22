@@ -1,8 +1,8 @@
 return {
 	{
 		'akinsho/toggleterm.nvim',
-		tag = '*',
-		keys = {{ '<C-\\>', mode='n' }, { '<leader>g', mode='n' }},
+		version = '*',
+		keys = {{ '<C-\\>', mode='n' }, { '<leader>g', mode='n' }, { '<leader>j', mode='n' }},
 		config = function()
 			require('toggleterm').setup({
 				size = 20,

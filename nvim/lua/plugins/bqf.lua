@@ -18,7 +18,6 @@ return {
 
 			cmd([[
 				nnoremap <silent> <leader>qd <Cmd>lua _G.diagnostic()<CR>
-				autocmd FileType qf unmap <buffer> <CR>
 				autocmd FileType qf nnoremap <silent><buffer> <CR> <CR>:cclose<CR>
 			]])
 

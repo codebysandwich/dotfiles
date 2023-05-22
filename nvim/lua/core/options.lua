@@ -1,3 +1,10 @@
+--              _   _
+--   ___  _ __ | |_(_) ___  _ __  ___
+--  / _ \| '_ \| __| |/ _ \| '_ \/ __|
+-- | (_) | |_) | |_| | (_) | | | \__ \
+--  \___/| .__/ \__|_|\___/|_| |_|___/
+--       |_|
+
 local opt = vim.opt
 
 opt.termguicolors = true
@@ -28,17 +35,19 @@ opt.updatetime = 100
 opt.signcolumn = "yes"
 
 vim.g.loaded_perl_provider = 0
-vim.g.python_host_skip_check=1
-vim.g.python_host_prog = '/usr/bin/python'
-vim.g.python3_host_skip_check=1
+vim.g.python_host_skip_check = 1
+-- vim.g.python_host_prog = '/usr/bin/python'
+vim.g.python3_host_skip_check = 1
 vim.g.python3_host_prog = '/usr/local/bin/python3'
-vim.g.ruby_host_skip_check=1
-vim.g.ruby_host_prog = vim.fn.exepath(vim.env.GEMPATH..'/neovim-ruby-host')
-vim.g.node_host_skip_check=1
+vim.g.ruby_host_skip_check = 1
+vim.g.ruby_host_prog = vim.fn.exepath(vim.env.GEMPATH .. '/neovim-ruby-host')
+vim.g.node_host_skip_check = 1
 vim.g.node_host_prog = '/usr/local/bin/neovim-node-host'
 
 
 vim.cmd([[
+	" syntax enable
+	" syntax on
 	exec "nohlsearch"
 	set foldmethod=indent
 	set foldmethod=expr

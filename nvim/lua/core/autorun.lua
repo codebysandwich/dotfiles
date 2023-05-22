@@ -1,3 +1,9 @@
+--              _
+--   __ _  ___ | |_ ___  _ __ _   _ _ __
+--  / _` |/ _ \| __/ _ \| '__| | | | '_ \
+-- | (_| | (_) | || (_) | |  | |_| | | | |
+--  \__,_|\___/ \__\___/|_|   \__,_|_| |_|
+
 vim.cmd([[
 autocmd FileType python,go,cpp,c,java set splitbelow
 " =====
@@ -24,7 +30,7 @@ autocmd FileType markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd FileType markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 " ---------syntax highlight-----------
 autocmd FileType markdown syn match markdownError "\w\@<=\w\@="
-autocmd FileType markdown nnoremap <LEADER>r :MarkdownPreview<CR>
+autocmd FileType markdown nnoremap <LEADER>m :MarkdownPreview<CR>
 " =====
 " ----------go----------
 " =====

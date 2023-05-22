@@ -45,21 +45,24 @@ return {
 							  '#458588',}, -- table of hex strings
 					termcolors = {} -- table of colour name strings
 				},
-				-- indent = {
-				--     enable = true
-				-- },
-				-- incremental_selection = {
-				--     enable = true,
-				--     keymaps = {
-				--         init_selection = "<CR>",
-				--         node_decremental = "<BS>",
-				--         node_incremental = "<CR>",
-				--         scope_incremental = "<TAB>"
-				--     },
+				indent = {
+					enable = true
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<CR>",
+						node_decremental = "<BS>",
+						node_incremental = "<CR>",
+						scope_incremental = "<TAB>"
+					},
+				}
 			}
 		end,
 	},
-	{'p00f/nvim-ts-rainbow', event = "BufReadPre",},
+	{
+		'p00f/nvim-ts-rainbow',
+	},
 	{
 		'nvim-treesitter/playground', cmd = {"TSPlaygroundToggle", 'TSHighlightCapturesUnderCursor'},
 		dependencies = 'nvim-treesitter/nvim-treesitter',

@@ -6,15 +6,32 @@ return {
 		config = function()
 			vim.cmd([[
 			colorscheme deus
-			syntax enable
-			syntax on
 			hi CursorLineNr guifg=#FECB6B
 			]])
 		end,
 	},
-	{
-		'nvim-tree/nvim-web-devicons',
-	},
+	-- {
+	--     "folke/tokyonight.nvim",
+	--     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	--     priority = 1000, -- make sure to load this before all the other start plugins
+	--     config = function()
+	--         require("tokyonight").setup({
+	--             -- style = "night",
+	--             styles = {
+	--                 -- Style to be applied to different syntax groups
+	--                 -- Value is any valid attr-list value for `:help nvim_set_hl`
+	--                 comments = { italic = false },
+	--                 keywords = { italic = false },
+	--             },
+	--         })
+	--         -- load the colorscheme here
+	--         vim.cmd([[
+	--         colorscheme tokyonight
+	--         hi CursorLineNr guifg=#FECB6B
+	--         hi! link @preproc Comment
+	--         ]])
+	--     end,
+	-- },
 	{
 		-- WARN: test
 		-- NOTE: test
@@ -23,7 +40,7 @@ return {
 		-- PERF: test
 		-- FIX: test
 		'folke/todo-comments.nvim',
-		event = 'VimEnter',
+		event = 'VeryLazy',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			keywords = {

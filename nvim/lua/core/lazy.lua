@@ -1,3 +1,10 @@
+--  _
+-- | |    __ _ _____   _
+-- | |   / _` |_  / | | |
+-- | |__| (_| |/ /| |_| |
+-- |_____\__,_/___|\__, |
+--                 |___/
+
 -- lazy boot_strap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -36,4 +43,12 @@ require("lazy").setup({
         },
       },
     },
+	ui = {
+		icons = {
+			cmd = "󰆍 ",
+			config = " ",
+			event = "",
+			start = "󰼛",
+		},
+	}
 })

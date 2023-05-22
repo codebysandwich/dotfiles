@@ -9,19 +9,22 @@ return {
 	},
 	{'honza/vim-snippets', event='InsertEnter'},
 	{'wakatime/vim-wakatime', event='InsertEnter'},
+	-- {
+	--     'gcmt/wildfire.vim',
+	--     keys = {{'<space>', mode='n'}},
+	--     init = function()
+	--         vim.cmd([[
+	--         let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
+	--                      \"ip", "it", "i>", "i`"]
+	--         " fix disable enter in quickfix
+	--         let g:wildfire_fuel_map = get(g:, "wildfire_fuel_map", "<SPACE>")
+	--         ]])
+	--     end
+	-- },
 	{
-		'gcmt/wildfire.vim',
-		keys = {{'<space>', mode='n'}},
-		init = function()
-			vim.cmd([[
-			let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
-						 \"ip", "it", "i>", "i`"]
-			" fix disable enter in quickfix
-			let g:wildfire_fuel_map = get(g:, "wildfire_fuel_map", "<SPACE>")
-			]])
-		end
+		'tpope/vim-surround', 
+		event = 'VeryLazy',
 	},
-	{'tpope/vim-surround'},
 	{'godlygeek/tabular', event='CmdlineEnter'},
 	{
 		'kshenoy/vim-signature', 

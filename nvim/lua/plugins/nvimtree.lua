@@ -34,8 +34,6 @@ return {
 			-- empty setup using defaults
 			require("nvim-tree").setup{
 				disable_netrw = false,
-				-- open_on_setup = false, -- when drop rnvimr reuse this
-				ignore_buffer_on_setup = false,
 				view = {
 					mappings = {
 						list = {

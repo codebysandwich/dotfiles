@@ -1,5 +1,9 @@
 return {
-	{'nvim-lua/plenary.nvim', },
+	-- {
+	--     'nvim-lua/plenary.nvim', 
+	--     -- event='VeryLazy'
+	--     keys = {'<leader>f', mode='n'}
+	-- },
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		keys = {
@@ -12,6 +16,7 @@ return {
 			{'<leader>fa', mode='n'},
 			{'<leader>fm', mode='n'},
 		},
+		cmd = 'Telescope find_files',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			require('telescope').setup {
