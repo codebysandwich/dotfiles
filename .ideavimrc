@@ -76,9 +76,9 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap rn :action RenameElement<CR>
 
 " wildfire
-nnoremap <Space> :action EditorSelectWord<CR>
+nnoremap <CR> :action EditorSelectWord<CR>
 nnoremap <Bs> :action EditorUnSelectWord<CR>
-vnoremap <Space> :action EditorSelectWord<CR>
+vnoremap <CR> :action EditorSelectWord<CR>
 vnoremap <Bs> :action EditorUnSelectWord<CR>
 "vista
 nnoremap <leader>v :action ActivateStructureToolWindow<CR>
