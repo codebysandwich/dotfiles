@@ -1,9 +1,17 @@
+--[[--
+File              : coc.lua
+Author            : sandwich
+Date              : 2023-09-25 15:12:59
+Last Modified Date: 2023-10-27 16:28:27
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'neoclide/coc.nvim',
 		branch = 'release',
-		-- event = 'VeryLazy',
-		event = 'InsertEnter',
+		event = 'VeryLazy',
+		-- event = 'InsertEnter',
 		init = function()
 			vim.cmd([[
 			inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
@@ -12,8 +20,8 @@ return {
 		end,
 		config = function()
 			vim.cmd([[
-			let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-snippets', 'coc-go', 
-							\'coc-marketplace', 'coc-yank', 
+			let g:coc_global_extensions=['coc-json', 'coc-vimlsp', 'coc-snippets', 'coc-go',
+							\'coc-marketplace', 'coc-yank',
 							\'coc-pyright']
 
 			" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -63,7 +71,6 @@ return {
 			inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 			" Symbol renaming.
 			nmap rn <Plug>(coc-rename)
-
 			nmap <leader>f :call CocActionAsync('format')<CR>
 			" =====
 			" ----------coc-go----------

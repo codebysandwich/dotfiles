@@ -1,7 +1,15 @@
+--[[--
+File              : dashboard.lua
+Author            : sandwich
+Date              : 2023-10-31 10:07:56
+Last Modified Date: 2023-10-31 10:08:29
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'glepnir/dashboard-nvim',
-		dependencies = { {'nvim-tree/nvim-web-devicons'} },
+		dependencies = { { 'nvim-tree/nvim-web-devicons' } },
 		event = 'VimEnter',
 		config = function()
 			vim.cmd([[
@@ -17,35 +25,35 @@ return {
 				theme = 'hyper',
 				change_to_vcs_root = true,
 				config = {
-				  week_header = {
-				   enable = true,
-				  },
-				  shortcut = {
-					{ desc = ' NewFile', group = '@function', action = 'enew', key = 'n' },
-					{ desc = ' Update', group = '@property', action = 'PlugUpdate', key = 'u' },
-					{
-					  icon = ' ',
-					  icon_hl = '@character.special',
-					  desc = 'Files',
-					  group = 'Label',
-					  action = 'Telescope find_files',
-					  key = 'f',
+					week_header = {
+						enable = true,
 					},
-					{
-					  desc = ' Apps',
-					  group = 'DiagnosticInfo',
-					  action = 'Telescope app',
-					  key = 'a',
+					shortcut = {
+						{ desc = ' NewFile', group = '@function', action = 'enew', key = 'n' },
+						{ desc = ' Update', group = '@property', action = 'PlugUpdate', key = 'u' },
+						{
+							icon = ' ',
+							icon_hl = '@character.special',
+							desc = 'Files',
+							group = 'Label',
+							action = 'Telescope find_files',
+							key = 'f',
+						},
+						{
+							desc = ' Apps',
+							group = 'DiagnosticInfo',
+							action = 'Telescope app',
+							key = 'a',
+						},
+						{
+							desc = ' Quit',
+							group = '@keyword',
+							action = 'q',
+							key = 'q',
+						},
 					},
-					{
-					  desc = ' Quit',
-					  group = '@keyword',
-					  action = 'q',
-					  key = 'q',
-					},
-				  },
-				  packages = { enable = true},
-				}, 
+					packages = { enable = true },
+				},
 			})
 		end
 	}

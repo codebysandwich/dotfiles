@@ -1,3 +1,11 @@
+--[[--
+File              : nvimtree.lua
+Author            : sandwich
+Date              : 2023-09-25 10:37:48
+Last Modified Date: 2023-12-04 15:59:27
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -5,10 +13,9 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		keys = {{'<leader>t', mode='n'}},
+		keys = { { '<leader>t', mode = 'n' } },
 		init = function()
 			local function open_nvim_tree(data)
-
 				-- buffer is a directory
 				local directory = vim.fn.isdirectory(data.file) == 1
 
@@ -30,18 +37,24 @@ return {
 			-- disable netrw at the very start of your init.lua (strongly advised)
 			vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
+			local function my_on_attach(bufnr)
+				local api = require "nvim-tree.api"
+
+				local function opts(desc)
+					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
+
+				-- default mappings
+				api.config.mappings.default_on_attach(bufnr)
+
+				-- NOTE: custom mappings
+				vim.keymap.set('n', 'i', api.node.show_info_popup, opts('Info'))
+			end
 
 			-- empty setup using defaults
-			require("nvim-tree").setup{
+			require("nvim-tree").setup {
 				disable_netrw = false,
-				view = {
-					mappings = {
-						list = {
-							{ key = "i", action = "toggle_file_info" },
-							-- { key = "<space>", action = "preview" }, -- will enused in extended keys
-						},
-					},
-				},
+				on_attach = my_on_attach,
 				git = {
 					enable = true,
 					ignore = false,
@@ -55,7 +68,7 @@ return {
 				renderer = {
 					highlight_opened_files = "name",
 					indent_markers = {
-					  enable = true,
+						enable = true,
 					},
 					icons = {
 						glyphs = {

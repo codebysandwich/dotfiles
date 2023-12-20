@@ -1,3 +1,11 @@
+--[[--
+File              : keymaps.lua
+Author            : sandwich
+Date              : 2023-10-08 19:20:44
+Last Modified Date: 2023-10-25 10:18:02
+Last Modified By  : sandwich
+--]]
+--
 --  _  __          __  __
 -- | |/ /___ _   _|  \/  | __ _ _ __  ___
 -- | ' // _ \ | | | |\/| |/ _` | '_ \/ __|
@@ -6,7 +14,7 @@
 --           |___/             |_|
 
 local set_keymap = vim.api.nvim_set_keymap
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ','
 
@@ -22,7 +30,7 @@ set_keymap('i', '<leader><leader>', '<esc>:w<CR>', opts)
 set_keymap('v', '<leader><leader>', '<esc>:w<CR>', opts)
 
 -- cursor move fast in line
--- nnoremap <c-e> $
+set_keymap('n', '<c-e>', '$', opts)
 set_keymap('n', '<c-a>', '0', opts)
 set_keymap('i', '<c-e>', '<Esc>A', opts)
 set_keymap('i', '<c-a>', '<Esc>I', opts)
@@ -74,7 +82,8 @@ set_keymap('n', '<leader>.', ':cd %:p:h<CR>', opts)
 set_keymap('n', 'S', ':w<CR>', opts)
 set_keymap('n', 'Q', ':q<CR>', opts)
 
+-- figlet
+set_keymap('n', '<leader>fg', ':r !figlet ', opts)
+
 -- speed neovim
 set_keymap('n', '<Leader>C', ':!rm ~/.local/state/nvim/shada/main.shada<CR>', opts)
-
-

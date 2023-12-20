@@ -61,6 +61,7 @@
 		"--enable=global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string",
 		"--enable=anomalous-backslash-in-string,bad-open-mode,unused-import",
 		"--extension-pkg-whitelist=PyQt5",
+		"--generated-members=torch.*",
 	],
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
@@ -79,5 +80,16 @@
 	"snippets.ultisnips.pythonPrompt": false,
 	"Lua.diagnostics.globals": [
 		"vim"
-	]
+	],
+	"languageserver": {
+		"swift": {
+			"command": "/usr/bin/sourcekit-lsp",
+			"args": [],
+			"filetypes": [
+				"swift"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	}
 }

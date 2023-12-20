@@ -1,9 +1,18 @@
+--[[--
+File              : treesitter.lua
+Author            : sandwich
+Date              : 2023-10-27 11:52:59
+Last Modified Date: 2023-11-01 23:25:36
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ":TSUpdate",
+		event = "VeryLazy",
 		config = function()
-			require'nvim-treesitter.configs'.setup {
+			require 'nvim-treesitter.configs'.setup {
 				-- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ensure_installed = { "c", "cpp", "java", "lua", "python", "vim", "go" },
 				-- ignore_install = { "javascript" }, -- List of parsers to ignore installing
@@ -11,7 +20,7 @@ return {
 				sync_install = false,
 				auto_install = false,
 				highlight = {
-					enable = true,              -- false will disable the whole extension
+					enable = true, -- false will disable the whole extension
 					-- disable = { "python", "vim" },  -- list of language that will be disabled
 					-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
 					disable = function(lang, buf)
@@ -20,7 +29,7 @@ return {
 						if ok and stats and stats.size > max_filesize then
 							return true
 						else
-							ls = {"vim", "go"}
+							local ls = { "vim", "go" }
 							for i = 0, #ls do
 								if ls[i] == lang then
 									return true
@@ -40,9 +49,9 @@ return {
 					-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
 					extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
 					max_file_lines = nil, -- Do not enable for files with more than n lines, int
-					colors = {'#E06C75', '#E5C07B', '#56B6C2',
-							  '#61AFEF', '#C678DD', '#d65d0e', 
-							  '#458588',}, -- table of hex strings
+					colors = { '#E06C75', '#E5C07B', '#56B6C2',
+						'#61AFEF', '#C678DD', '#d65d0e',
+						'#458588', }, -- table of hex strings
 					termcolors = {} -- table of colour name strings
 				},
 				indent = {
@@ -64,7 +73,9 @@ return {
 		'p00f/nvim-ts-rainbow',
 	},
 	{
-		'nvim-treesitter/playground', cmd = {"TSPlaygroundToggle", 'TSHighlightCapturesUnderCursor'},
+		'nvim-treesitter/playground',
+		event = "VeryLazy",
+		cmd = { "TSPlaygroundToggle", 'TSHighlightCapturesUnderCursor' },
 		dependencies = 'nvim-treesitter/nvim-treesitter',
 	},
 }

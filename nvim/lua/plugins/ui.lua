@@ -1,3 +1,11 @@
+--[[--
+File              : ui.lua
+Author            : sandwich
+Date              : 2023-09-25 13:03:22
+Last Modified Date: 2023-12-07 17:07:35
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'codebysandwich/nvim-deus',
@@ -32,6 +40,21 @@ return {
 	--         ]])
 	--     end,
 	-- },
+	-- {
+	--     "rmehri01/onenord.nvim",
+	--     branch = "main",
+	--     config = function()
+	--         require('onenord').setup({
+	--             borders = false,
+	--             theme = "dark",
+	--         })
+	--         vim.cmd([[
+	--         colorscheme onenord
+	--         hi! link @preproc Comment
+	--         hi CursorLineNr guifg=#FECB6B
+	--         ]])
+	--     end,
+	-- },
 	{
 		-- WARN: test
 		-- NOTE: test
@@ -46,7 +69,7 @@ return {
 			keywords = {
 				TODO = { icon = " ", color = "warning" },
 				HACK = { icon = " ", color = "info" },
-				WARN = {icon = " ", color = "warning", alt = { "WARNING", "XXX" }},
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 			},
 			highlight = {
 				multiline = false,

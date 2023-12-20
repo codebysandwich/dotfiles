@@ -1,3 +1,11 @@
+--[[--
+File              : bqf.lua
+Author            : sandwich
+Date              : 2023-09-25 13:53:18
+Last Modified Date: 2023-09-25 16:37:18
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'kevinhwang91/nvim-bqf',
@@ -5,7 +13,6 @@ return {
 		config = function()
 			local fn = vim.fn
 			local cmd = vim.cmd
-			local api = vim.api
 
 			cmd([[
 				hi BqfPreviewBorder guifg=#50a14f ctermfg=71
@@ -18,7 +25,7 @@ return {
 
 			cmd([[
 				nnoremap <silent> <leader>qd <Cmd>lua _G.diagnostic()<CR>
-				autocmd FileType qf nnoremap <silent><buffer> <CR> <CR>:cclose<CR>
+				autocmd FileType qf nnoremap <silent><buffer> <CR> <CR>:cclose<CR>:lclose<CR>
 			]])
 
 
@@ -44,12 +51,13 @@ return {
 							}
 							table.insert(items, item)
 						end
-						fn.setqflist({}, ' ', {title = 'CocDiagnosticList', items = items})
+						fn.setqflist({}, ' ', { title = 'CocDiagnosticList', items = items })
 
 						cmd('bo cope')
 					end
 				end)
 			end
+
 			-- you can also subscribe User `CocDiagnosticChange` event to reload your diagnostic in quickfix
 			-- dynamically, enjoy yourself :)
 

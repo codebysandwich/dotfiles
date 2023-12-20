@@ -1,3 +1,11 @@
+--[[--
+File              : autorun.lua
+Author            : sandwich
+Date              : 2023-10-25 14:01:13
+Last Modified Date: 2023-10-25 14:01:13
+Last Modified By  : sandwich
+--]]
+--
 --              _
 --   __ _  ___ | |_ ___  _ __ _   _ _ __
 --  / _` |/ _ \| __/ _ \| '__| | | | '_ \
@@ -5,12 +13,17 @@
 --  \__,_|\___/ \__\___/|_|   \__,_|_| |_|
 
 vim.cmd([[
-autocmd FileType python,go,cpp,c,java set splitbelow
+autocmd FileType python,go,cpp,c,java,lua,swift set splitbelow
 " =====
 " ----------python----------
 " =====
 autocmd FileType python nnoremap <leader>r :w<ESC>:sp \| resize 12 \| terminal time python3 %<Enter>G
 autocmd FileType python inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| terminal time python3 %<Enter>G
+" =====
+" ----------lua----------
+" =====
+autocmd FileType lua nnoremap <leader>r :w<ESC>:sp \| resize 12 \| terminal time lua %<Enter>G
+autocmd FileType lua inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| terminal time lua %<Enter>G
 " =====
 " ----------markdown----------
 " =====
@@ -59,4 +72,9 @@ autocmd FileType java nnoremap <leader>r :w<ESC>:!javac -sourcepath src -d out %
 
 autocmd FileType java inoremap <leader>r <ESC>:w<ESC>:!javac -sourcepath src -d out %<Enter><ESC>
 			\:sp \| resize 12 \| terminal w=%:.:r;c=${w\#*/};time java -cp out $c<Enter>G
+" =====
+" ----------swift----------
+" =====
+autocmd FileType swift nnoremap <leader>r :w<ESC>:sp \| resize 12 \| terminal time swift %<Enter>G
+autocmd FileType swift inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| terminal time swift %<Enter>G
 ]])

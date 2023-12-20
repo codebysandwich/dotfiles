@@ -1,8 +1,16 @@
+--[[--
+File              : vista.lua
+Author            : sandwich
+Date              : 2023-10-09 09:26:05
+Last Modified Date: 2023-10-09 09:38:34
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'liuchengxu/vista.vim',
 		-- cmd = 'Vista!!',
-		keys = {{'<leader>v', mode='n'}},
+		keys = { { '<leader>v', mode = 'n' } },
 		config = function()
 			vim.cmd([[
 			noremap <silent> <leader>v :Vista!!<CR>
@@ -46,7 +54,9 @@ return {
 			\    "unit": "\uf475",
 			\    "value": "\uf89f",
 			\    "variable": "\ue71b",
-			\    "map": "\ufb44"
+			\    "map": "\ufb44",
+			\    "string": "\ueb8d",
+			\    "number": "󰎠 ",
 			\  }
 			let g:scrollstatus_size = 15
 			let g:vista_sidebar_width = 40

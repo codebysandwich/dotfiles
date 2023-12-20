@@ -1,15 +1,24 @@
+--[[--
+File              : bufferline.lua
+Author            : sandwich
+Date              : 2023-10-31 10:05:33
+Last Modified Date: 2023-12-18 15:45:57
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'akinsho/bufferline.nvim',
-		version = "v3.*", 
+		version = "v3.*",
 		dependencies = 'nvim-tree/nvim-web-devicons',
-		event = { 'BufEnter', },
+		-- event = { 'BufEnter', },
+		event = { 'VeryLazy', },
 		config = function()
 			local function get_color(color_group, scope)
 				if vim.fn.hlexists(color_group) == 0 then
 					return nil
 				end
-				color = vim.api.nvim_get_hl_by_name(color_group, true)
+				local color = vim.api.nvim_get_hl_by_name(color_group, true)
 				if color.background ~= nil then
 					color.bg = string.format('#%06x', color.background)
 					color.background = nil
@@ -28,12 +37,24 @@ return {
 				return color
 			end
 			-- local get_color = require'lualine.utils.utils'.extract_highlight_colors
-			require("bufferline").setup{
+			require("bufferline").setup {
 				options = {
 					show_buffer_close_icons = false,
 					show_close_icon = false,
 					indicator = {
 						icon = '▍', -- this should be omitted if indicator style is not 'icon'
+					},
+					offsets = {
+						{
+							filetype = "NvimTree",
+							text = function()
+								local foldername = vim.fn.expand('%:p:h:t')
+								return "  " .. foldername
+							end,
+							highlight = "Function",
+							text_align = "left",
+							separator = false,
+						}
 					},
 				},
 				highlights = {
@@ -52,7 +73,7 @@ return {
 					},
 					separator = {
 						bg = get_color('Normal', 'bg'),
-						-- guifg = get_color('Normal', 'bg')
+						-- fg = get_color('Normal', 'bg')
 					},
 					background = {
 						bg = get_color('Normal', 'bg')
@@ -61,7 +82,7 @@ return {
 						bg = get_color('Normal', 'bg')
 					}
 				},
-			} 
+			}
 		end
 	},
 }

@@ -1,3 +1,11 @@
+--[[--
+File              : options.lua
+Author            : sandwich
+Date              : 2023-10-19 12:40:50
+Last Modified Date: 2023-12-14 11:07:46
+Last Modified By  : sandwich
+--]]
+--
 --              _   _
 --   ___  _ __ | |_(_) ___  _ __  ___
 --  / _ \| '_ \| __| |/ _ \| '_ \/ __|
@@ -36,7 +44,6 @@ opt.signcolumn = "yes"
 
 vim.g.loaded_perl_provider = 0
 vim.g.python_host_skip_check = 1
--- vim.g.python_host_prog = '/usr/bin/python'
 vim.g.python3_host_skip_check = 1
 vim.g.python3_host_prog = '/usr/local/bin/python3'
 vim.g.ruby_host_skip_check = 1

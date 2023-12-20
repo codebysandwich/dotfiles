@@ -1,3 +1,10 @@
+--[[--
+File              : tools.lua
+Author            : sandwich
+Date              : 2023-06-25 16:46:07
+Last Modified Date: 2023-11-05 21:10:49
+Last Modified By  : sandwich
+--]]
 return {
 	{
 		'rrethy/vim-hexokinase',
@@ -5,16 +12,17 @@ return {
 		cmd = 'HexokinaseToggle'
 	},
 	{
-		'jiangmiao/auto-pairs', 
+		'jiangmiao/auto-pairs',
+		-- event = 'VimEnter'
 	},
-	{'honza/vim-snippets', event='InsertEnter'},
-	{'wakatime/vim-wakatime', event='InsertEnter'},
+	{ 'honza/vim-snippets',    event = 'InsertEnter' },
+	{ 'wakatime/vim-wakatime', event = 'InsertEnter' },
 	-- {
 	--     'gcmt/wildfire.vim',
 	--     keys = {{'<space>', mode='n'}},
 	--     init = function()
 	--         vim.cmd([[
-	--         let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", 
+	--         let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}",
 	--                      \"ip", "it", "i>", "i`"]
 	--         " fix disable enter in quickfix
 	--         let g:wildfire_fuel_map = get(g:, "wildfire_fuel_map", "<SPACE>")
@@ -22,12 +30,12 @@ return {
 	--     end
 	-- },
 	{
-		'tpope/vim-surround', 
+		'tpope/vim-surround',
 		event = 'VeryLazy',
 	},
-	{'godlygeek/tabular', event='CmdlineEnter'},
+	{ 'godlygeek/tabular', event = 'CmdlineEnter' },
 	{
-		'kshenoy/vim-signature', 
+		'kshenoy/vim-signature',
 		event = 'VeryLazy',
 	},
 	{
@@ -35,7 +43,7 @@ return {
 		cmd = 'AddHeader',
 		init = function()
 			vim.cmd([[
-			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java silent! AddHeader
+			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java,*.lua silent! AddHeader
 			]])
 		end,
 		config = function()
@@ -51,7 +59,7 @@ return {
 	{
 		'preservim/nerdcommenter',
 		keys = {
-			{'<leader>c<space>', mode={'n', 'x'}},
+			{ '<leader>c<space>', mode = { 'n', 'x' } },
 		},
 		config = function()
 			vim.cmd([[
@@ -64,9 +72,9 @@ return {
 	{
 		'mg979/vim-visual-multi',
 		keys = {
-			{'<C-j>', mode='n'},
-			{'<C-k>', mode='n'},
-			{'<C-n>', mode='n'},
+			{ '<C-j>', mode = 'n' },
+			{ '<C-k>', mode = 'n' },
+			{ '<C-n>', mode = 'n' },
 		},
 		init = function()
 			vim.cmd([[
@@ -76,25 +84,73 @@ return {
 			]])
 		end,
 	},
+	-- {
+	--     'easymotion/vim-easymotion',
+	--     keys = { { '<leader>s', mode = 'n' }, { '<leader>S', mode = 'n' } },
+	--     config = function()
+	--         vim.cmd([[
+	--         let g:EasyMotion_add_search_history = 0
+	--         nnoremap <leader>S <Plug>(easymotion-overwin-f2)
+	--         nnoremap <leader>s <Plug>(easymotion-sn)
+	--         " vim-easymotion disturbs diagnostics
+	--         autocmd User EasyMotionPromptBegin silent! CocDisable
+	--         autocmd User EasyMotionPromptEnd silent! CocEnable
+	--         autocmd User EasyMotionPromptBegin silent! Gitsigns toggle_signs
+	--         autocmd User EasyMotionPromptEnd silent! Gitsigns toggle_signs
+	--         ]])
+	--     end
+	-- },
 	{
-		'easymotion/vim-easymotion',
-		keys = {{'<leader>s', mode='n'}, {'<leader>S', mode='n'}},
-		config = function()
-			vim.cmd([[
-			let g:EasyMotion_add_search_history = 0
-			nnoremap <leader>S <Plug>(easymotion-overwin-f2)
-			nnoremap <leader>s <Plug>(easymotion-sn)
-			" vim-easymotion disturbs diagnostics
-			autocmd User EasyMotionPromptBegin silent! CocDisable
-			autocmd User EasyMotionPromptEnd silent! CocEnable
-			autocmd User EasyMotionPromptBegin silent! Gitsigns toggle_signs
-			autocmd User EasyMotionPromptEnd silent! Gitsigns toggle_signs
-			]])
-		end
+		"folke/flash.nvim",
+		-- event = "VeryLazy",
+		opts = {
+			highlight = { backdrop = false, },
+			modes = {
+				char = {
+					jump_labels = true
+				}
+			},
+			label = { after = false, before = true }
+		},
+		-- stylua: ignore
+		keys = {
+			{ "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{
+				"<leader>S",
+				mode = { "n", "x", "o" },
+				function() require("flash").treesitter() end,
+				desc =
+				"Flash Treesitter"
+			},
+			{
+				"r",
+				mode = "o",
+				function() require("flash").remote() end,
+				desc =
+				"Remote Flash"
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function() require("flash").treesitter_search() end,
+				desc =
+				"Treesitter Search"
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function() require("flash").toggle() end,
+				desc =
+				"Toggle Flash Search"
+			},
+			{ "/",         mode = { 'n' } },
+			{ "f",         mode = { 'n' } },
+			{ "F",         mode = { 'n' } },
+		},
 	},
 	{
 		'ybian/smartim',
-		keys = {{ '<esc>', mode={'i'}}},
+		keys = { { '<esc>', mode = { 'i' } } },
 		config = function()
 			vim.cmd([[
 			let g:smartim_default = 'com.apple.keylayout.ABC'
@@ -102,13 +158,13 @@ return {
 		end
 	},
 	{
-		'folke/zen-mode.nvim', cmd='ZenMode',
-		keys = {{'<leader>z', mode='n', desc='zenmode'}},
+		'folke/zen-mode.nvim',
+		keys = { { '<leader>z', mode = 'n', desc = 'zenmode' } },
 		config = function()
 			require("zen-mode").setup {
 				window = {
 					backdrop = 1,
-					width = 1, 
+					width = 1,
 					height = 1,
 				},
 				plugins = {
@@ -126,7 +182,7 @@ return {
 	},
 	{
 		'kevinhwang91/rnvimr',
-		keys = {{ 'ra',  mode='n' }},
+		keys = { { 'ra', mode = 'n' } },
 		config = function()
 			vim.cmd([[
 			let g:rnvimr_enable_ex = 0
@@ -150,7 +206,7 @@ return {
 						\ 'col': 0,
 						\ 'row': 0,
 						\ 'style': 'minimal' }
-			let g:rnvimr_presets = [{'width': 0.8, 'height': 0.8}]
+			let g:rnvimr_presets = [{'width': 0.85, 'height': 0.85}]
 			]])
 		end
 	}
