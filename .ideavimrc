@@ -24,7 +24,8 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 " 设置相对行号
 set number
 set relativenumber
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard^=ideaput
 
 " unable vim's fold
 " set nofoldenable
@@ -64,9 +65,12 @@ nnoremap <S-Tab> gT
 " action
 nnoremap <leader>w :action CloseContent<CR>
 nnoremap <leader>r :action RunClass<CR>
+" nnoremap <leader>r :action Run<CR>
 nnoremap <leader>R :action RunMenu<CR>
 nnoremap <leader>c<Space> :action CommentByLineComment<CR>
 vnoremap <leader>c<Space> :action CommentByLineComment<CR>
+nnoremap <leader>h :action ShowHoverInfo<CR>
+nnoremap <leader>j :action ActivateTerminalToolWindow<CR>
 
 nnoremap ga :action GotoAction<CR>
 vnoremap ga :action GotoAction<CR>
