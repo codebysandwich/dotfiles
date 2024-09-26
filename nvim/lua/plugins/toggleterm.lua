@@ -1,8 +1,16 @@
+--[[--
+File              : toggleterm.lua
+Author            : sandwich
+Date              : 2024-02-17 18:49:46
+Last Modified Date: 2024-02-20 20:59:00
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'akinsho/toggleterm.nvim',
 		version = '*',
-		keys = {{ '<C-\\>', mode='n' }, { '<leader>g', mode='n' }, { '<leader>j', mode='n' }},
+		keys = { { '<C-\\>', mode = 'n' }, { '<leader>g', mode = 'n' }, { '<leader>j', mode = 'n' } },
 		config = function()
 			require('toggleterm').setup({
 				size = 20,
@@ -25,6 +33,17 @@ return {
 					--     background = "Normal",
 					-- },
 				},
+				on_open = function(terminal)
+					local nvimtree = require "nvim-tree.api"
+					local nvimtree_view = require "nvim-tree.view"
+					if nvimtree_view.is_visible() and terminal.direction == "horizontal" then
+						-- local nvimtree_width = vim.fn.winwidth(nvimtree_view.get_winnr())
+						-- nvimtree.tree.toggle()
+						-- nvimtree_view.View.width = nvimtree_width
+						nvimtree.tree.toggle(false, true)
+						nvimtree.tree.toggle(false, true)
+					end
+				end
 			})
 
 			local Terminal = require("toggleterm.terminal").Terminal
@@ -76,9 +95,10 @@ return {
 				ranger:toggle()
 			end
 
-			local opts = {noremap = true, silent = true}
+			local opts = { noremap = true, silent = true }
 			vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 			vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>ToggleTerm direction=horizontal size=20<CR>", opts)
+			vim.api.nvim_set_keymap("t", "<leader>j", "<cmd>ToggleTerm direction=horizontal size=20<CR>", opts)
 		end
 	}
 }

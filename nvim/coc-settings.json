@@ -7,9 +7,15 @@
 	"suggest.noselect": true,
 	"suggest.autoTrigger": "always",
 	"suggest.timeout": 5000,
+	"suggest.insertMode": "insert",
 	"suggest.detailField": "preview",
 	"suggest.triggerCompletionWait": 50,
 	"suggest.snippetIndicator": "",
+	"suggest.floatConfig": {
+		"border": true,
+		"rounded": true,
+		"borderhighlight": "FloatBorder",
+	},
 	"suggest.completionItemKindLabels": {
 		"class": "\uf0e8",
 		"color": "\ue22b",
@@ -37,10 +43,10 @@
 		"value": "\uf89f",
 		"variable": "\ue71b"
 	},
-	"diagnostic.errorSign": "\uf467",
+	"diagnostic.errorSign": "\uf00d",
 	"diagnostic.warningSign": "\uf071",
-	"diagnostic.infoSign": "\uf129",
-	"diagnostic.hintSign": "\uf864",
+	"diagnostic.infoSign": "\uf0335",
+	"diagnostic.hintSign": "\uf0365",
 	"diagnostic.displayByAle": false,
 	"diagnostic.refreshOnInsertMode": false,
 	"diagnostic.checkCurrentLine": true,
@@ -71,12 +77,12 @@
 	"python.pythonPath": "/usr/local/bin/python3",
 	"python.analysis.autoImportCompletions": false,
 	"pyright.disableDiagnostics": true,
-	"pyright.inlayHints.variableTypes": false,
-	"pyright.inlayHints.functionReturnTypes": false,
+	"pyright.inlayHints.variableTypes": true,
+	"pyright.inlayHints.functionReturnTypes": true,
 	"pydocstring.formatter": "google",
 	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 	"java.trace.server": "verbose",
-	"java.inlayHints.parameterNames.enabled": "none",
+	"java.inlayHints.parameterNames.enabled": "literals",
 	"snippets.ultisnips.pythonPrompt": false,
 	"Lua.diagnostics.globals": [
 		"vim"
@@ -91,5 +97,13 @@
 			"initializationOptions": {},
 			"settings": {}
 		}
-	}
+	},
+	// rust-analyzer
+	"workspace.ignoredFolders": [
+		"$HOME",
+		"$HOME/.cargo/**",
+		"$HOME/.rustup/**"
+	],
+	"rust-analyzer.lens.debug.enable": false,
+	"rust-analyzer.lens.run.enable": false,
 }

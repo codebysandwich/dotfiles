@@ -2,7 +2,7 @@
 File              : ui.lua
 Author            : sandwich
 Date              : 2023-09-25 13:03:22
-Last Modified Date: 2023-12-07 17:07:35
+Last Modified Date: 2024-07-22 10:06:39
 Last Modified By  : sandwich
 --]]
 --
@@ -67,7 +67,10 @@ return {
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			keywords = {
-				TODO = { icon = " ", color = "warning" },
+				FIX = {
+					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+				},
+				TODO = { icon = " ", color = "warning" },
 				HACK = { icon = " ", color = "info" },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 			},

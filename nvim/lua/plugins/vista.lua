@@ -2,7 +2,7 @@
 File              : vista.lua
 Author            : sandwich
 Date              : 2023-10-09 09:26:05
-Last Modified Date: 2023-10-09 09:38:34
+Last Modified Date: 2024-04-22 12:04:05
 Last Modified By  : sandwich
 --]]
 --
@@ -18,6 +18,7 @@ return {
 			" let g:vista_fzf_preview = ['right:50%']
 			" let g:vista_default_executive = 'ctags'
 			let g:vista_default_executive = 'coc'
+			let g:vista_close_on_jump = 1
 			" let g:vista_executive_for = {
 			"   \ 'cpp': 'vim_lsp',
 			"   \ 'php': 'vim_lsp',
@@ -28,6 +29,7 @@ return {
 			"       \ }
 			let g:vista#renderer#enable_icon = 1
 			let g:vista#renderer#icons = {
+			\    "array": "\uea8a",
 			\	 "package": "\uf487",
 			\    "class": "\uf0e8",
 			\    "color": "\ue22b",
@@ -56,7 +58,9 @@ return {
 			\    "variable": "\ue71b",
 			\    "map": "\ufb44",
 			\    "string": "\ueb8d",
-			\    "number": "󰎠 ",
+			\    "number": "󰎠",
+			\    "object": "\uf248",
+			\    "boolean": "",
 			\  }
 			let g:scrollstatus_size = 15
 			let g:vista_sidebar_width = 40

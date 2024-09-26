@@ -1,3 +1,11 @@
+--[[--
+File              : markdowm.lua
+Author            : sandwich
+Date              : 2024-03-10 12:21:08
+Last Modified Date: 2024-03-10 12:50:54
+Last Modified By  : sandwich
+--]]
+--
 return {
 	{
 		'iamcco/markdown-preview.nvim',
@@ -12,7 +20,14 @@ return {
 	},
 	{
 		'mzlogin/vim-markdown-toc',
-		ft = 'markdown'
+		ft = 'markdown',
+		config = function()
+			vim.cmd [[
+			let g:vmt_fence_text = 'TOC'
+			let g:vmt_fence_closing_text = '/TOC'
+			let g:vmt_fence_hidden_markdown_style = 'GFM'
+			]]
+		end
 	},
 	{
 		'dhruvasagar/vim-table-mode',

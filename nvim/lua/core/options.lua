@@ -2,7 +2,7 @@
 File              : options.lua
 Author            : sandwich
 Date              : 2023-10-19 12:40:50
-Last Modified Date: 2023-12-14 11:07:46
+Last Modified Date: 2024-04-19 15:45:12
 Last Modified By  : sandwich
 --]]
 --
@@ -42,6 +42,10 @@ opt.writebackup = false
 opt.updatetime = 100
 opt.signcolumn = "yes"
 
+-- opt.equalalways = false
+-- opt.winfixwidth = true
+-- opt.winfixheight = true
+
 vim.g.loaded_perl_provider = 0
 vim.g.python_host_skip_check = 1
 vim.g.python3_host_skip_check = 1
@@ -56,9 +60,6 @@ vim.cmd([[
 	" syntax enable
 	" syntax on
 	exec "nohlsearch"
-	set foldmethod=indent
-	set foldmethod=expr
-	set foldexpr=nvim_treesitter#foldexpr()
 	" Disable folding at startup.
 	set foldlevelstart=99
 	" FIXME: iterm disable Cursor flash

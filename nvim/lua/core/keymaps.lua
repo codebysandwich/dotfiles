@@ -2,7 +2,7 @@
 File              : keymaps.lua
 Author            : sandwich
 Date              : 2023-10-08 19:20:44
-Last Modified Date: 2023-10-25 10:18:02
+Last Modified Date: 2024-02-26 20:38:14
 Last Modified By  : sandwich
 --]]
 --
@@ -18,8 +18,9 @@ local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ','
 
+-- terminal keymaps
 -- esc in terminal
-set_keymap('t', '<leader><Esc>', '<C-\\><C-n>', opts)
+set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 -- switch buffer window
 set_keymap('n', '<M-right>', '<c-w>l', opts)
 set_keymap('n', '<M-left>', '<c-w>h', opts)
@@ -35,6 +36,8 @@ set_keymap('n', '<c-a>', '0', opts)
 set_keymap('i', '<c-e>', '<Esc>A', opts)
 set_keymap('i', '<c-a>', '<Esc>I', opts)
 
+-- ratote window
+set_keymap('n', '<leader>n', '<c-w>w', opts)
 
 -- disable Directions keys
 -- set_keymap('i', '<left>', '', opts)

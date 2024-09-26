@@ -2,7 +2,7 @@
 File              : lualine.lua
 Author            : sandwich
 Date              : 2023-09-24 19:28:08
-Last Modified Date: 2023-12-20 09:17:51
+Last Modified Date: 2024-07-27 18:00:41
 Last Modified By  : sandwich
 --]]
 --
@@ -109,8 +109,10 @@ return {
 					source = diff_source,
 					symbols = {
 						added = ' ',
-						modified = '柳',
-						removed = ' '
+						-- modified = '柳',
+						removed = ' ',
+						-- modified = '󱨇 ',
+						modified = ' ',
 					},
 				},
 					-- {'branch', icon = {'', align='left'}},
@@ -118,7 +120,8 @@ return {
 					{
 						'diagnostics',
 						source = { 'coc' },
-						symbols = { error = ' ', warn = ' ', info = ' ' },
+						-- symbols = { error = ' ', warn = ' ', info = ' ' },
+						symbols = { error = ' ', warn = ' ', info = '󰌵' },
 						diagnostics_color = {
 							error = { fg = get_color('CocErrorSign', 'fg') },
 							warn = { fg = get_color('CocWarningSign', 'fg') },

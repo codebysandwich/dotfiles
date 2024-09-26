@@ -2,7 +2,7 @@
 File              : coc.lua
 Author            : sandwich
 Date              : 2023-09-25 15:12:59
-Last Modified Date: 2023-10-27 16:28:27
+Last Modified Date: 2024-04-16 15:13:25
 Last Modified By  : sandwich
 --]]
 --
@@ -10,8 +10,8 @@ return {
 	{
 		'neoclide/coc.nvim',
 		branch = 'release',
-		event = 'VeryLazy',
-		-- event = 'InsertEnter',
+		-- event = 'VeryLazy',
+		event = 'InsertEnter',
 		init = function()
 			vim.cmd([[
 			inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
@@ -100,6 +100,11 @@ return {
 			" =====
 			autocmd BufNewFile *.java silent write
 			autocmd BufNewFile *.java silent CocRestart
+			" =====
+			" ----------coc#terminal----------
+			" =====
+			let g:coc_terminal_height=12
+			" autocmd User CocTerminalOpen :resize 12
 			]])
 		end
 	}

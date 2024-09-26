@@ -2,7 +2,7 @@
 File              : autorun.lua
 Author            : sandwich
 Date              : 2023-10-25 14:01:13
-Last Modified Date: 2023-10-25 14:01:13
+Last Modified Date: 2024-07-12 17:37:37
 Last Modified By  : sandwich
 --]]
 --
@@ -14,6 +14,11 @@ Last Modified By  : sandwich
 
 vim.cmd([[
 autocmd FileType python,go,cpp,c,java,lua,swift set splitbelow
+" =====
+" ----------json----------
+" =====
+" set json file comment
+autocmd FileType json set filetype=jsonc
 " =====
 " ----------python----------
 " =====
@@ -77,4 +82,8 @@ autocmd FileType java inoremap <leader>r <ESC>:w<ESC>:!javac -sourcepath src -d 
 " =====
 autocmd FileType swift nnoremap <leader>r :w<ESC>:sp \| resize 12 \| terminal time swift %<Enter>G
 autocmd FileType swift inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| terminal time swift %<Enter>G
+" =====
+" ----------rust----------
+" =====
+autocmd FileType rust nnoremap <leader>r :w<ESC>:CocCommand rust-analyzer.run<Enter>
 ]])

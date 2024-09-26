@@ -2,7 +2,7 @@
 File              : tools.lua
 Author            : sandwich
 Date              : 2023-06-25 16:46:07
-Last Modified Date: 2023-11-05 21:10:49
+Last Modified Date: 2024-04-19 10:50:54
 Last Modified By  : sandwich
 --]]
 return {
@@ -11,9 +11,53 @@ return {
 		build = 'make hexokinase',
 		cmd = 'HexokinaseToggle'
 	},
+	-- {
+	--     'jiangmiao/auto-pairs',
+	--     event = 'BufRead'
+	-- },
 	{
-		'jiangmiao/auto-pairs',
-		-- event = 'VimEnter'
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = function()
+			local npairs = require("nvim-autopairs")
+			local Rule = require('nvim-autopairs.rule')
+			local cond = require("nvim-autopairs.conds")
+			npairs.setup({
+				map_cr = false,
+				enable_abbr = true,
+				fast_wrap = {
+					map = '<M-e>',
+					chars = { '{', '[', '(', '"', "'" },
+					pattern = [=[[%'%"%>%]%)%}%,]]=],
+					end_key = '$',
+					before_key = 'h',
+					after_key = 'l',
+					cursor_pos_before = true,
+					keys = 'qwertyuiopzxcvbnmasdfghjkl',
+					manual_position = true,
+					highlight = 'Search',
+					highlight_grey = 'Comment'
+				}
+			})
+			npairs.add_rules({
+				Rule(" ", " ")
+					:with_pair(cond.done())
+					:replace_endpair(function(opts)
+						local pair = opts.line:sub(opts.col - 1, opts.col)
+						if vim.tbl_contains({ "()", "{}", "[]" }, pair) then
+							return " " -- it return space here
+						end
+						return "" -- return empty
+					end)
+					:with_move(cond.none())
+					:with_cr(cond.none())
+					:with_del(function(opts)
+						local col = vim.api.nvim_win_get_cursor(0)[2]
+						local context = opts.line:sub(col - 1, col + 2)
+						return vim.tbl_contains({ "(  )", "{  }", "[  ]" }, context)
+					end)
+			})
+		end
 	},
 	{ 'honza/vim-snippets',    event = 'InsertEnter' },
 	{ 'wakatime/vim-wakatime', event = 'InsertEnter' },
@@ -43,7 +87,7 @@ return {
 		cmd = 'AddHeader',
 		init = function()
 			vim.cmd([[
-			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java,*.lua silent! AddHeader
+			autocmd BufNewFile,BufRead *.py,*.go,*.cpp,*.c,*h,*.java,*.lua,*.rs silent! AddHeader
 			]])
 		end,
 		config = function()
@@ -102,7 +146,6 @@ return {
 	-- },
 	{
 		"folke/flash.nvim",
-		-- event = "VeryLazy",
 		opts = {
 			highlight = { backdrop = false, },
 			modes = {

@@ -2,14 +2,15 @@
 File              : bufferline.lua
 Author            : sandwich
 Date              : 2023-10-31 10:05:33
-Last Modified Date: 2023-12-18 15:45:57
+Last Modified Date: 2024-07-08 00:31:52
 Last Modified By  : sandwich
 --]]
 --
 return {
 	{
 		'akinsho/bufferline.nvim',
-		version = "v3.*",
+		version = "*",
+		branch = "main",
 		dependencies = 'nvim-tree/nvim-web-devicons',
 		-- event = { 'BufEnter', },
 		event = { 'VeryLazy', },
