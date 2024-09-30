@@ -2,7 +2,7 @@
 File              : lualine.lua
 Author            : sandwich
 Date              : 2023-09-24 19:28:08
-Last Modified Date: 2024-07-27 18:00:41
+Last Modified Date: 2024-09-30 14:41:44
 Last Modified By  : sandwich
 --]]
 --
@@ -41,15 +41,6 @@ return {
 				}
 			end
 		end
-		-- local treesitter = require('nvim-treesitter')
-		-- -- use treesitter parse
-		-- local function treelocation()
-		--     return treesitter.statusline({
-		--         indicator_size = 70,
-		--         type_patterns = {'class', 'function', 'method'},
-		--         separator = ''
-		--     })
-		-- end
 
 		-- TODO: Think about LSP Later
 		local function breadcrumbs()
@@ -109,9 +100,7 @@ return {
 					source = diff_source,
 					symbols = {
 						added = ' ',
-						-- modified = '柳',
 						removed = ' ',
-						-- modified = '󱨇 ',
 						modified = ' ',
 					},
 				},
@@ -120,7 +109,6 @@ return {
 					{
 						'diagnostics',
 						source = { 'coc' },
-						-- symbols = { error = ' ', warn = ' ', info = ' ' },
 						symbols = { error = ' ', warn = ' ', info = '󰌵' },
 						diagnostics_color = {
 							error = { fg = get_color('CocErrorSign', 'fg') },
