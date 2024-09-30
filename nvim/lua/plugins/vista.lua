@@ -2,7 +2,7 @@
 File              : vista.lua
 Author            : sandwich
 Date              : 2023-10-09 09:26:05
-Last Modified Date: 2024-04-22 12:04:05
+Last Modified Date: 2024-09-26 22:11:16
 Last Modified By  : sandwich
 --]]
 --
@@ -44,7 +44,7 @@ return {
 			\    "function": "\u0192",
 			\    "interface": "\uf417",
 			\    "keyword": "\uf1de",
-			\    "method": "\uf6a6",
+			\    "method": "󰆧",
 			\    "module": "\uf40d",
 			\    "operator": "\uf915",
 			\    "property": "\ue624",
