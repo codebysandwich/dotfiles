@@ -2,7 +2,7 @@
 File              : nvimtree.lua
 Author            : sandwich
 Date              : 2023-09-25 10:37:48
-Last Modified Date: 2024-07-27 17:56:00
+Last Modified Date: 2024-09-30 14:44:24
 Last Modified By  : sandwich
 --]]
 --
@@ -22,6 +22,12 @@ return {
 				if not directory then
 					return
 				end
+
+				-- create a new, empty buffer
+				vim.cmd.enew()
+
+				-- wipe the directory buffer
+				vim.cmd.bw(data.buf)
 
 				-- change to the directory
 				vim.cmd.cd(data.file)
@@ -92,7 +98,7 @@ return {
 
 			-- empty setup using defaults
 			require("nvim-tree").setup {
-				disable_netrw = false,
+				-- disable_netrw = true,
 				on_attach = my_on_attach,
 				git = {
 					enable = true,
