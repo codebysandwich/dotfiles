@@ -2,7 +2,7 @@
 File              : bufferline.lua
 Author            : sandwich
 Date              : 2023-10-31 10:05:33
-Last Modified Date: 2024-07-08 00:31:52
+Last Modified Date: 2024-10-08 08:58:00
 Last Modified By  : sandwich
 --]]
 --
@@ -50,9 +50,9 @@ return {
 							filetype = "NvimTree",
 							text = function()
 								local foldername = vim.fn.expand('%:p:h:t')
-								return "  " .. foldername
+								return "  " .. foldername
 							end,
-							highlight = "Function",
+							highlight = "Directory",
 							text_align = "left",
 							separator = false,
 						}
