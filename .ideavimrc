@@ -24,8 +24,8 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 " 设置相对行号
 set number
 set relativenumber
-" set clipboard=unnamed
-set clipboard^=ideaput
+set clipboard+=unnamed
+" set clipboard^=ideaput
 
 " unable vim's fold
 " set nofoldenable
@@ -95,6 +95,6 @@ vnoremap <A-j> :action MoveLineDown<CR>
 " format code
 nnoremap <leader>f :action ReformatCode<CR>
 
-nnoremap S :w<CR>
+nnoremap S :w<CR>:action ReformatCode<CR>
 nnoremap Q :q<CR>
 nnoremap R :source ~/.ideavimrc<CR>
