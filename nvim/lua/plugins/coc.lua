@@ -2,7 +2,7 @@
 File              : coc.lua
 Author            : sandwich
 Date              : 2023-09-25 15:12:59
-Last Modified Date: 2024-04-16 15:13:25
+Last Modified Date: 2025-07-11 10:06:45
 Last Modified By  : sandwich
 --]]
 --
@@ -79,8 +79,8 @@ return {
 			" =====
 			" coc-snippets
 			" =====
-			" let g:coc_snippet_next = '<TAB>'
-			" let g:coc_snippet_prev = '<S-TAB>'
+			let g:coc_snippet_next = '<c-n>'
+			let g:coc_snippet_prev = '<c-p>'
 			autocmd BufRead,BufNewFile coc-settings.json set filetype=jsonc
 			" coc-explorer
 			" nmap <leader>t :CocCommand explorer<CR>

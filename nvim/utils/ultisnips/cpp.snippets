@@ -1,0 +1,6 @@
+snippet ifn "header Pre-processing instructions" b
+#ifndef ${1:`basename $(pwd) | tr 'a-z' 'A-Z'`_`!v toupper(expand("%:t:r"))`}_H
+#define ${1/(\w+).*/$1/}_H
+${0}
+#endif
+endsnippet

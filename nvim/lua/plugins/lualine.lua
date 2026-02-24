@@ -2,7 +2,7 @@
 File              : lualine.lua
 Author            : sandwich
 Date              : 2023-09-24 19:28:08
-Last Modified Date: 2024-09-30 14:41:44
+Last Modified Date: 2025-06-22 23:13:44
 Last Modified By  : sandwich
 --]]
 --
@@ -23,7 +23,7 @@ return {
 			status_fg = '#97C379'
 			-- bg = '#1F252E',
 		}
-		vim.cmd([[hi Folder guifg=#edbf69
+		vim.cmd([[hi Folder guifg=#70c0ba
 		hi WinbarItem guifg=#959DA5]])
 		local get_color = require 'lualine.utils.utils'.extract_highlight_colors
 

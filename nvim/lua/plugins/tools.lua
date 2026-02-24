@@ -2,7 +2,7 @@
 File              : tools.lua
 Author            : sandwich
 Date              : 2023-06-25 16:46:07
-Last Modified Date: 2024-04-19 10:50:54
+Last Modified Date: 2025-12-28 21:58:45
 Last Modified By  : sandwich
 --]]
 return {
@@ -147,7 +147,7 @@ return {
 	{
 		"folke/flash.nvim",
 		opts = {
-			highlight = { backdrop = false, },
+			highlight = { backdrop = true, },
 			modes = {
 				char = {
 					jump_labels = true
@@ -223,34 +223,21 @@ return {
 			vim.api.nvim_set_keymap("n", "<leader>z", "<Cmd>ZenMode<CR>", opts)
 		end
 	},
+	-- cmake tools
 	{
-		'kevinhwang91/rnvimr',
-		keys = { { 'ra', mode = 'n' } },
-		config = function()
-			vim.cmd([[
-			let g:rnvimr_enable_ex = 0
-			let g:rnvimr_enable_picker = 1
-			let g:rnvimr_draw_border = 1
-			let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
-			highlight link RnvimrNormal CursorLine
-			let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set draw_borders both']
-			" nnoremap <silent> <leader><leader>r :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
-			nnoremap <silent> ra :RnvimrToggle<CR>
-			let g:rnvimr_action = {
-						\ '<C-t>': 'NvimEdit tabedit',
-						\ '<C-x>': 'NvimEdit split',
-						\ '<C-v>': 'NvimEdit vsplit',
-						\ 'gw': 'JumpNvimCwd',
-						\ 'yw': 'EmitRangerCwd'
-						\ }
-			let g:rnvimr_layout = { 'relative': 'editor',
-						\ 'width': &columns,
-						\ 'height': &lines,
-						\ 'col': 0,
-						\ 'row': 0,
-						\ 'style': 'minimal' }
-			let g:rnvimr_presets = [{'width': 0.85, 'height': 0.85}]
-			]])
+		'Civitasv/cmake-tools.nvim',
+		ft = 'cpp',
+		opts = {},
+	},
+	{
+		'github/copilot.vim',
+		event = 'InsertEnter',
+		init = function()
+			vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+				expr = true,
+				replace_keycodes = false
+			})
+			vim.g.copilot_no_tab_map = true
 		end
 	}
 }

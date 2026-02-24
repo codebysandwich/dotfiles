@@ -2,7 +2,7 @@
 File              : toggleterm.lua
 Author            : sandwich
 Date              : 2024-02-17 18:49:46
-Last Modified Date: 2024-02-20 20:59:00
+Last Modified Date: 2025-10-16 17:20:20
 Last Modified By  : sandwich
 --]]
 --
@@ -10,7 +10,7 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		version = '*',
-		keys = { { '<C-\\>', mode = 'n' }, { '<leader>g', mode = 'n' }, { '<leader>j', mode = 'n' } },
+		keys = { { '<C-\\>', mode = 'n' }, { '<leader>g', mode = 'n' }, { '<leader>j', mode = 'n' }, { '<leader>-', mode = 'n' }, { 'ra', mode = 'n' } },
 		config = function()
 			require('toggleterm').setup({
 				size = 20,
@@ -95,8 +95,16 @@ return {
 				ranger:toggle()
 			end
 
+			local yazi = Terminal:new({ cmd = "yazi", hidden = true })
+
+			function _YAZI_TOGGLE()
+				yazi:toggle()
+			end
+
 			local opts = { noremap = true, silent = true }
 			vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<leader>-", "<cmd>lua _YAZI_TOGGLE()<CR>", opts)
+			vim.api.nvim_set_keymap("n", "ra", "<cmd>lua _RANGER_TOGGLE()<CR>", opts)
 			vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>ToggleTerm direction=horizontal size=20<CR>", opts)
 			vim.api.nvim_set_keymap("t", "<leader>j", "<cmd>ToggleTerm direction=horizontal size=20<CR>", opts)
 		end

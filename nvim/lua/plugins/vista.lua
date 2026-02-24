@@ -2,7 +2,7 @@
 File              : vista.lua
 Author            : sandwich
 Date              : 2023-10-09 09:26:05
-Last Modified Date: 2024-09-26 22:11:16
+Last Modified Date: 2025-10-15 11:24:14
 Last Modified By  : sandwich
 --]]
 --
@@ -38,7 +38,7 @@ return {
 			\    "enum": "\uf435",
 			\    "enumMember": "\uf02b",
 			\    "event": "\ufacd",
-			\    "field": "\uf93d",
+			\    "field": "󰐾",
 			\    "file": "\uf723",
 			\    "folder": "\uf115",
 			\    "function": "\u0192",
@@ -50,7 +50,7 @@ return {
 			\    "property": "\ue624",
 			\    "reference": "\ufa46",
 			\    "snippet": "\ue60b",
-			\    "struct": "\ufb44",
+			\    "struct": "󰙅",
 			\    "text": "\ue612",
 			\    "typeParameter": "\uf728",
 			\    "unit": "\uf475",

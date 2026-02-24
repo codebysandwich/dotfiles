@@ -2,7 +2,7 @@
 File              : ui.lua
 Author            : sandwich
 Date              : 2023-09-25 13:03:22
-Last Modified Date: 2024-07-22 10:06:39
+Last Modified Date: 2025-10-15 21:44:10
 Last Modified By  : sandwich
 --]]
 --
@@ -18,6 +18,22 @@ return {
 			]])
 		end,
 	},
+	-- {
+	--     "catppuccin/nvim",
+	--     name = "catppuccin",
+	--     priority = 1000,
+	--     lazy = false,
+	--     config = function()
+	--         require("catppuccin").setup({
+	--             background = {
+	--                 dark = "frappe",
+	--             }
+	--         })
+	--         vim.cmd([[
+	--         colorscheme catppuccin-frappe
+	--         ]])
+	--     end,
+	-- },
 	-- {
 	--     "folke/tokyonight.nvim",
 	--     lazy = false, -- make sure we load this during startup if it is your main colorscheme

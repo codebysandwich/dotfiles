@@ -2,7 +2,7 @@
 File              : bufferline.lua
 Author            : sandwich
 Date              : 2023-10-31 10:05:33
-Last Modified Date: 2024-10-08 08:58:00
+Last Modified Date: 2025-11-04 11:30:09
 Last Modified By  : sandwich
 --]]
 --
@@ -49,7 +49,7 @@ return {
 						{
 							filetype = "NvimTree",
 							text = function()
-								local foldername = vim.fn.expand('%:p:h:t')
+								local foldername = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 								return "  " .. foldername
 							end,
 							highlight = "Directory",
@@ -67,21 +67,21 @@ return {
 						fg = '#98C379',
 					},
 					buffer_selected = {
-						-- guibg = '#FF424C',
+						-- bg = get_color("String", 'fg'),
+						-- fg = "#373234",
 						-- TabLineSel = {
 						--     bg = '#FF424C'
 						-- },
 					},
 					separator = {
 						bg = get_color('Normal', 'bg'),
-						-- fg = get_color('Normal', 'bg')
 					},
 					background = {
 						bg = get_color('Normal', 'bg')
 					},
 					modified = {
 						bg = get_color('Normal', 'bg')
-					}
+					},
 				},
 			}
 		end

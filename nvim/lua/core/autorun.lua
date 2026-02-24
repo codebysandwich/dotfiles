@@ -2,7 +2,7 @@
 File              : autorun.lua
 Author            : sandwich
 Date              : 2023-10-25 14:01:13
-Last Modified Date: 2024-07-12 17:37:37
+Last Modified Date: 2025-10-15 21:07:20
 Last Modified By  : sandwich
 --]]
 --
@@ -13,6 +13,8 @@ Last Modified By  : sandwich
 --  \__,_|\___/ \__\___/|_|   \__,_|_| |_|
 
 vim.cmd([[
+" disable auto add comment to newline
+autocmd FileType * set formatoptions-=cro
 autocmd FileType python,go,cpp,c,java,lua,swift set splitbelow
 " =====
 " ----------json----------
@@ -58,16 +60,18 @@ autocmd FileType go inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| terminal 
 " ----------cpp----------
 " =====
 autocmd FileType cpp nnoremap <leader>r :w<ESC>:!clang++ % -o %:r<Enter><ESC>
-							  \:sp \| resize 12 \| terminal time ./%:r<Enter>G
+							  \:sp \| resize 12 \| terminal time %:r<Enter>G
 autocmd FileType cpp inoremap <leader>r <ESC>:w<ESC>:!clang++ % -o %:r<Enter><ESC>
-							  \:sp \| resize 12 \| terminal time ./%:r<Enter>G
+							  \:sp \| resize 12 \| terminal time %:r<Enter>G
+autocmd FileType cpp nnoremap <leader>b :w<ESC>:CMakeBuild<Enter>
+autocmd FileType cpp nnoremap <leader>R :w<ESC>:CMakeRunCurrentFile<Enter>
 " =====
 " ----------c----------
 " =====
 autocmd FileType c nnoremap <leader>r :w<ESC>:!clang % -o %:r<Enter><ESC>
-							\:sp \| resize 12 \| terminal time ./%:r<Enter>G
+							\:sp \| resize 12 \| terminal time %:r<Enter>G
 autocmd FileType c inoremap <leader>r <ESC>:w<ESC>:!clang % -o %:r<Enter><ESC>
-							\:sp \| resize 12 \| terminal time ./%:r<Enter>G
+							\:sp \| resize 12 \| terminal time %:r<Enter>G
 " =====
 " ----------java----------
 " =====
@@ -85,5 +89,10 @@ autocmd FileType swift inoremap <leader>r <ESC>:w<ESC>:sp \| resize 12 \| termin
 " =====
 " ----------rust----------
 " =====
-autocmd FileType rust nnoremap <leader>r :w<ESC>:CocCommand rust-analyzer.run<Enter>
+autocmd FileType rust nnoremap <leader>r :w<ESC>:CocCommand rust-analyzer.run<Enter><C-w>j
+
+" =====
+" ----------close terminal bottom----------
+" =====
+nnoremap <leader><ESC> <C-w>j:q!<Enter>
 ]])
